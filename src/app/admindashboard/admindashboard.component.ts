@@ -29,11 +29,23 @@ export class AdmindashboardComponent implements OnInit {
         options: {
             icon: 'menu',
             onClick: () => this.isDrawerOpen = !this.isDrawerOpen
-        }
-    }];
+       } },{
+          widget: 'dxButton',
+          location: 'before',
+          options: {
+              icon: 'runner',
+            onClick: () => this.logout()
+          }
+         } ];
 
 
     ngOnInit() {
+
+    }
+
+    logout(){
+      window.sessionStorage.clear();
+      this.router.navigate(['/login']);
 
     }
 }
