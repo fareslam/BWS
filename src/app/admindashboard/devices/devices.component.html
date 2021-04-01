@@ -1,0 +1,34 @@
+
+<h4 class="display-4">Devices Management</h4>
+<dx-data-grid id="gridContainer"
+[showBorders]="true"
+[dataSource]="dataSource"
+(onRowInserted)="addDevice($event)"
+(onRowRemoved)="removeDevice($event)"
+keyExpr="reference">
+
+
+<dxo-paging [enabled]="false"></dxo-paging>
+<dxo-editing mode="popup"   [useIcons]="true"  [allowAdding]="true" [allowDeleting]="true"></dxo-editing>
+
+
+<dxi-column dataField="reference" caption="Reference" [width] ="100">
+  <dxi-validation-rule type="required"></dxi-validation-rule>
+</dxi-column>
+<dxi-column dataField="name" caption="Name">
+  <dxi-validation-rule type="required"></dxi-validation-rule>
+</dxi-column>
+<dxi-column dataField="longitude" caption="Longitude" dataType="number">
+  <dxi-validation-rule type="required"></dxi-validation-rule>
+</dxi-column>
+<dxi-column dataField="latitude" caption="Latitude" dataType="number">
+  <dxi-validation-rule type="required"></dxi-validation-rule>
+</dxi-column>
+  <dxi-column type="buttons" [width]="110" caption="Actions">
+
+    <dxi-button name="delete"></dxi-button>
+
+    </dxi-column>
+
+
+</dx-data-grid>

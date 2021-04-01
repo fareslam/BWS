@@ -1,0 +1,59 @@
+
+@import"../../bootstrap.css";
+body{
+   background-image:url("../../assets/back2.png");
+ /* background-color: aquamarine;*/
+    background-position:center;
+    background-size:100%;
+
+
+    -webkit-font-smoothing: antialiased;
+    font: normal 14px Roboto,arial,sans-serif;
+    font-family: 'Dancing Script', cursive!important;
+  }
+
+h1{
+    color: #073642;
+    text-align: center;
+    font-weight: bold;
+}
+.container {
+    padding: 110px;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #ffffff!important;
+    opacity: 1; /* Firefox */
+    font-size:18px!important;
+}
+#logo{
+    width:300px;
+    float: right;
+
+}
+#log{
+    background-color: #073642;
+    border-color: #073642;
+    color: white;
+}
+.form-login {
+    background-color: rgba(0, 0, 0, 0.55);
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 15px;
+    border-color:#d2d2d2;
+    border-width: 5px;
+    color:white;
+    box-shadow:0 1px 0 #cfcfcf;
+}
+.form-control input-sm chat-input{
+    background:transparent!important;
+    color:white!important;
+    font-size: 18px!important;
+    width: 200px;
+}
+.form-control input-sm chat-input{
+    border-radius: 10px;
+}
