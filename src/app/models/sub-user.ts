@@ -1,4 +1,5 @@
 import { SubUserSpace } from "./sub-user-space";
+import { User } from "./user";
 
 export class SubUser {
 
@@ -13,6 +14,8 @@ export class SubUser {
     surname:string;
     tel:number;
     list_sub_user_spaces:SubUserSpace[];
+    cinu:number;
+    user:User;
 
-    
+
 }

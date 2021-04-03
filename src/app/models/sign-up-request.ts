@@ -8,5 +8,6 @@ export class SignUpRequest {
     surname:string;
     tel:number;
     cin_admin:number;
-    
+    cinu:number;
+
 }

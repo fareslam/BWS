@@ -51,7 +51,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppComponent } from './app.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { DxDataGridModule } from 'devextreme-angular';
 import {FormsModule} from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
 
@@ -73,7 +73,7 @@ import { DxDropDownButtonModule } from 'devextreme-angular';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { AdmindashboardComponent } from './admindashboard/admindashboard.component';
-
+import { Service } from './services/app.service';
 
 import { DxSliderModule } from "devextreme-angular";
 import { MapModule } from './dashboard/map/map.module';
@@ -89,7 +89,6 @@ import { FooterComponent } from './footer/footer.component';
 import { authInterceptorProviders } from './JWT-header-HTTP/auth.interceptor';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -101,19 +100,19 @@ import { authInterceptorProviders } from './JWT-header-HTTP/auth.interceptor';
 //https://mdbootstrap.com/docs/angular/navigation/footer/
   imports: [
     DxCheckBoxModule,
-    DxSelectBoxModule,
+
     DxNumberBoxModule,
     DxButtonModule,
     DxAutocompleteModule,
     DxFormModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule,HttpClientModule,
+    FormsModule,HttpClientModule,DxDataGridModule,
     BrowserAnimationsModule,DxSliderModule, DxTextBoxModule, DxValidatorModule, DxButtonModule,
     BrowserAnimationsModule,MatButtonModule, A11yModule,
     ClipboardModule,DxFileUploaderModule,DxDropDownButtonModule,
     CdkStepperModule,
-    CdkTableModule, DxRadioGroupModule,
+    CdkTableModule, DxDrawerModule, DxListModule, DxRadioGroupModule, DxToolbarModule,
     CdkTreeModule,RouterModule,
     DragDropModule,
     MatAutocompleteModule,DxSelectBoxModule,

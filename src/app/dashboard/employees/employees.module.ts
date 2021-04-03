@@ -5,15 +5,15 @@ import { EmployeesRoutingModule } from './employees-routing.module';
 import { EmployeesComponent } from './employees.component';
 
 import { DxDataGridModule } from 'devextreme-angular';
-
+import { DxSelectBoxModule} from 'devextreme-angular';
+import { DxPopupModule} from 'devextreme-angular';
 
 @NgModule({
   declarations: [EmployeesComponent],
   imports: [
     CommonModule,
     EmployeesRoutingModule,
-    DxDataGridModule,
-
+    DxDataGridModule,DxSelectBoxModule,DxPopupModule
   ]
 })
 export class EmployeesModule { }

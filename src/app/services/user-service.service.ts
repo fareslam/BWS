@@ -15,22 +15,23 @@ export class UserServiceService {
   };
   constructor(private http: HttpClient) { }
 /****** SUB USER MANGMENT **** */
-  addSubUser(signUpRequest:SignUpRequest):Observable<any>
+  addSubUser(cinu:number,signUpRequest:SignUpRequest):Observable<any>
   {
-    return this.http.post(`${this.API_URL}/SubUser/add`,signUpRequest);
+    return this.http.post(`${this.API_URL}/${cinu}/SubUser/add`,signUpRequest);
 
   }
 
-  deleteSubUser(cin:number):Observable<any>
+  deleteSubUser(cinu:number):Observable<any>
   {
-    return this.http.delete(`${this.API_URL}/SubUser/delete/${cin}`);   
+    return this.http.delete(`${this.API_URL}/SubUser/delete/${cinu}`);
   }
-listSubUserByUser(cin:number):Observable<any>{
-return this.http.get(`${this.API_URL}/SubUser/all/${cin}`);
+listSubUserByUser(cinu:number):Observable<any>{
+return this.http.get(`${this.API_URL}/${cinu}/SubUser/all/`);
 }
 
 
-
+getuserBySubUser(cin:number):Observable<any>
+{return this.http.get(`${this.API_URL}/${cin}`);}
 
 
 }
