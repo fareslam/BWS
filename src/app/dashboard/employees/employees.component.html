@@ -42,13 +42,14 @@ keyExpr="cin">
   </dxi-column>
 
 
-  <dxi-column dataField="role" caption="Role SubUsers" [visible]="false">
+  <dxi-column dataField="role" caption="Role SubUsers" [visible]="true">
 
     <dxo-lookup
     [dataSource]="roles"
     displayExpr="name"
     valueExpr="name">
 </dxo-lookup>
+<dxi-validation-rule type="required"></dxi-validation-rule>
   </dxi-column>
 
 

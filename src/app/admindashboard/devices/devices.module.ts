@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { DevicesRoutingModule } from './devices-routing.module';
 import { DevicesComponent } from './devices.component';
 import { DxDataGridModule, DxSelectBoxModule } from 'devextreme-angular';
+import { DxLookupModule } from 'devextreme-angular';
 
 
 @NgModule({
@@ -11,7 +12,7 @@ import { DxDataGridModule, DxSelectBoxModule } from 'devextreme-angular';
   imports: [
     CommonModule,
     DevicesRoutingModule,
-    DxDataGridModule,
+    DxDataGridModule,DxLookupModule,
     DxSelectBoxModule
   ]
 })

@@ -4,6 +4,7 @@ import { AdminServiceService } from 'src/app/services/admin-service.service';
 import notify from 'devextreme/ui/notify';
 import { Space } from 'src/app/models/space';
 import { ConstraintCo2 } from 'src/app/models/constraint-co2';
+import { Area } from 'src/app/models/area';
 
 @Component({
   selector: 'app-devices',
@@ -13,13 +14,17 @@ import { ConstraintCo2 } from 'src/app/models/constraint-co2';
 
 export class DevicesComponent implements OnInit {
   dataSource: Device[] = [];
-  dataSource2: Space[] = [];
-  dataSource3: ConstraintCo2[] = [];
-  dev:any={};
+  spaces: Space[] = [];
+  cons: ConstraintCo2[] = [];
+
+
   msg = '';
   constructor(private adminService: AdminServiceService) { }
 
   ngOnInit(): void {
+    this.readData();
+    this.listSp();
+    this.listConst();
   }
   readData() {
     this.adminService.listdevices().subscribe(
@@ -37,29 +42,34 @@ export class DevicesComponent implements OnInit {
           this.adminService.listConstraints().subscribe(
             data => {
 
-              this.dataSource3 = data;
+              this.cons = data;
 
-              console.log(data);
+              console.log(this.cons);
             },
 
             err=> {
-              console.log(err);});}
+              console.log("no consss");
 
-
-              listSpace() {
-                this.adminService.listSpaces().subscribe(
-                  data => {
-
-                    this.dataSource2 = data;
-
-                    console.log(data);
-                  },
-
-                  err=> {
-                    console.log(err);});}
+            })
+              }
 
 
 
+
+
+
+            listSp()
+             {
+               this.adminService.listSpaces().subscribe(
+                 data=> {
+                   this.spaces=data;
+                   console.log(data);
+                        },
+                        err=>{
+                          console.log(err);
+                            }
+                      )
+                    }
 
 
 
@@ -70,6 +80,7 @@ export class DevicesComponent implements OnInit {
       data=>{this.msg=data;
         console.log(event.data)
         this.readData();
+
         notify("Device deleted successfully", "success", 1500);
       }
 
@@ -97,21 +108,5 @@ addDevice(event){
 }
 
 
-
-updateDevice(event){
-
-  this.adminService.addDevice(this.dev).subscribe(
-    data=>{console.log(data);
-      notify("Device Updated successfully", "success", 1500);
-      this.readData();}
-      ,
-      err=>{
-      notify(err.error.message, "warning", 1500);
-      this.readData();
-      console.log(err.error.message)
-          }
-  )
-  console.log(event)
-}
 
 }

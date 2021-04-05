@@ -1,11 +1,16 @@
-
-<h4 class="display-4">Devices Management</h4>
+<h4 class="display-4" style="text-align: center;">Devices Management</h4>
+<hr>
+&nbsp; &nbsp;
 <dx-data-grid id="gridContainer"
 [showBorders]="true"
 [dataSource]="dataSource"
+[repaintChangesOnly]="true"
+[rowAlternationEnabled]="true"
 (onRowInserted)="addDevice($event)"
 (onRowRemoved)="removeDevice($event)"
-keyExpr="reference">
+keyExpr="reference"
+
+>
 
 
 <dxo-paging [enabled]="false"></dxo-paging>
@@ -24,6 +29,38 @@ keyExpr="reference">
 <dxi-column dataField="latitude" caption="Latitude" dataType="number">
   <dxi-validation-rule type="required"></dxi-validation-rule>
 </dxi-column>
+
+
+
+
+
+<dxi-column dataField="idSpace" caption="Space" [width]="125">
+
+  <dxo-lookup
+  [dataSource]="spaces"
+  displayExpr="name"
+  valueExpr="idSpace">
+</dxo-lookup>
+<dxi-validation-rule type="required"></dxi-validation-rule>
+</dxi-column>
+
+
+
+<dxi-column dataField="idConstraint" caption="Constraint"   [width]="125">
+
+  <dxo-lookup
+  [dataSource]="cons"
+  displayExpr="nameConstraint"
+  valueExpr="idConstraint">
+</dxo-lookup>
+<dxi-validation-rule type="required"></dxi-validation-rule>
+</dxi-column>
+
+
+
+
+
+
   <dxi-column type="buttons" [width]="110" caption="Actions">
 
     <dxi-button name="delete"></dxi-button>

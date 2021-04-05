@@ -9,15 +9,41 @@ import notify from 'devextreme/ui/notify';
 })
 export class AreasComponent implements OnInit {
   dataSource: Area[] = [];
-  area:any={};
+
   msg = '';
   constructor(private adminService: AdminServiceService) { }
 
   ngOnInit(): void {
+    this.listAr();
 
   }
 
+  listAr()
+  {
+    this.adminService.listAreas().subscribe(
+      data=> {
+        this.dataSource=data;
+        console.log(data);
+      },
+      err=>{
+        console.log(err);
+          }
+    )
+  }
+
 addArea(event){
-  console.log(event);
+this.adminService.addArea(event.data).subscribe(
+  data=>{
+    console.log(data);
+    notify("Area added successfully", "success", 1500);
+    this.listAr();
+  },
+  err=>{
+    notify(err.error.message, "warning", 1500);
+    this.listAr();
+    console.log(err.error.message)
+  }
+
+)
 }
 }

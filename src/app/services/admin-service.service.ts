@@ -67,7 +67,7 @@ getUserByCin(cin:number):Observable<any>
 /************** USER DEVIVCE MANAGMENT*********** */
 
 affectUserDevice(ud:UserDevice):Observable<any>
-{return this.http.put(`${this.API_URL}/userDevices/add`,ud);}
+{return this.http.post(`${this.API_URL}/userDevices/add`,ud);}
 
 listUserDevices():Observable<any>
 {return this.http.get(`${this.API_URL}/userDevices/all`);}
@@ -92,7 +92,12 @@ deleteConstraint(idConstraint:Number):Observable<any>{
 addArea(a:Area):Observable<Object>
 {return this.http.post(`${this.API_URL}/area/add`,a);}
 
+listAreas():Observable<Area[]>
+{return this.http.get<Area[]>(`${this.API_URL}/area/all`);}
 
+
+
+/*****Space Management***** */
 addSpace(s:Space):Observable<Object>
 {return this.http.post(`${this.API_URL}/space/add`,s);}
 

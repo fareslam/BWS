@@ -1,0 +1,79 @@
+
+
+
+
+
+<h4 class="display-4" style="text-align: center;">Assign for each customer their own devices</h4>
+<hr>
+
+
+
+<dx-data-grid id="gridContainer"
+[showBorders]="true"
+[dataSource]="listud"
+[repaintChangesOnly]="true"
+
+[rowAlternationEnabled]="true" keyExpr="udk">
+
+
+
+
+
+
+<dxi-column dataField="udk.cinu" caption="CIN" [width]="150">
+
+</dxi-column>
+
+
+
+<dxi-column dataField="udk.reference" caption="Reference"   [width]="150">
+
+
+</dxi-column>
+
+
+
+
+
+
+
+
+</dx-data-grid>
+
+
+<div class="dx-fieldset">
+  <div class="dx-fieldset-header">Choose the client :</div>
+  <div class="dx-field">
+    <dx-lookup
+    [dataSource]="users"
+    displayExpr="subuser.surname"
+    [(value)]="cinu"
+    valueExpr="cinu">
+    <dxo-drop-down-options [showTitle]="false"></dxo-drop-down-options>
+</dx-lookup>
+  </div>
+</div>
+
+<div class="dx-fieldset">
+  <div class="dx-fieldset-header">Choose their devices :</div>
+  <div class="dx-field">
+    <dx-lookup
+    [dataSource]="devices"
+    displayExpr="name"
+    [(value)]="reference"
+    valueExpr="reference">
+    <dxo-drop-down-options [showTitle]="false"></dxo-drop-down-options>
+</dx-lookup>
+  </div>
+</div>
+<dx-button
+icon="check"
+type="success"
+text="Assign"
+(onClick)="save()"
+id="button"
+>
+</dx-button>
+
+<br><br>
+

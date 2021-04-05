@@ -1,5 +1,5 @@
 <h4 class="display-4"  style="text-align: center;">Areas Management</h4>
-
+<hr>
 <dx-data-grid id="gridContainer"
 [showBorders]="true"
 [dataSource]="dataSource"
@@ -8,7 +8,7 @@ keyExpr="idArea">
 
 
 <dxo-paging [enabled]="false"></dxo-paging>
-<dxo-editing mode="popup"   [useIcons]="true"  [allowAdding]="true" [allowDeleting]="true"></dxo-editing>
+<dxo-editing mode="popup"   [useIcons]="true"  [allowAdding]="true" ></dxo-editing>
 
 
 <dxi-column dataField="idArea" caption="idArea" [width] ="100">
@@ -23,11 +23,7 @@ keyExpr="idArea">
 <dxi-column dataField="latitude" caption="Latitude" dataType="number">
   <dxi-validation-rule type="required"></dxi-validation-rule>
 </dxi-column>
-  <dxi-column type="buttons" [width]="110" caption="Actions">
 
-    <dxi-button name="delete"></dxi-button>
-
-    </dxi-column>
 
 
 </dx-data-grid>
