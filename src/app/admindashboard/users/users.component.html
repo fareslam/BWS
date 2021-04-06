@@ -3,6 +3,8 @@
 
 <dx-data-grid id="gridContainer"
 [dataSource]="dataSource"
+[rowAlternationEnabled]="true"
+
 [showBorders]="true"
 (onRowRemoved)="deleteData($event)"
 (onRowInserted)="insertData($event)"

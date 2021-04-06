@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ClientDevicesRoutingModule } from './client-devices-routing.module';
-import { ClientDevicesComponent } from './client-devices.component';
+import { ClientareasRoutingModule } from './clientareas-routing.module';
+import { ClientareasComponent } from './clientareas.component';
 import { DxButtonModule, DxLookupModule, DxSelectBoxModule, DxTextBoxModule } from 'devextreme-angular';
 import dxButton from 'devextreme/ui/button';
 import { DxFormModule} from 'devextreme-angular';
 import { DxDataGridModule } from 'devextreme-angular';
 
 @NgModule({
-  declarations: [ClientDevicesComponent],
+  declarations: [ClientareasComponent],
   imports: [
     CommonModule,
-    ClientDevicesRoutingModule,
+    ClientareasRoutingModule,
     DxSelectBoxModule,
     DxTextBoxModule,DxFormModule,
     DxLookupModule,
@@ -20,4 +20,4 @@ import { DxDataGridModule } from 'devextreme-angular';
     DxLookupModule
   ]
 })
-export class ClientDevicesModule { }
+export class ClientareasModule { }

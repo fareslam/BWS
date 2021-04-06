@@ -46,4 +46,21 @@ this.adminService.addArea(event.data).subscribe(
 
 )
 }
+
+DeleteArea(event)
+{
+  this.adminService.deleteArea(event.data.idArea).subscribe(
+    data=>{
+      console.log(data);
+      notify("Area deleted successfully", "success", 1500);
+      this.listAr();
+    },
+    err=>{
+      notify(err.error.message, "warning", 1500);
+      this.listAr();
+      console.log(err.error.message)
+    }
+
+  )
+}
 }

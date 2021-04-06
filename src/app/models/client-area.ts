@@ -6,5 +6,5 @@ export class ClientArea {
 ua_key:UAKey;
 area:Area;
 user:User;
-Nbr:number;
+Number:number;
 }

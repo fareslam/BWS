@@ -3,7 +3,7 @@
 
 
 
-<h4 class="display-4" style="text-align: center;">Assign for each customer their own devices</h4>
+<h4 class="display-4" style="text-align: center;">Assign a space to my employees</h4>
 <hr>
 
 
@@ -12,26 +12,23 @@
 
 
 <div class="dx-fieldset">
-  <div class="dx-fieldset-header">Choose the client :</div>
+  <div class="dx-fieldset-header">Choose my employee :</div>
   <div class="dx-field">
     <dx-lookup
-    [dataSource]="users"
-    displayExpr="subuser.surname"
-    [(value)]="cinu"
-    valueExpr="cinu">
+    [dataSource]="subusers"
+    displayExpr="surname"
+    [(value)]="cin"
+    valueExpr="cin">
     <dxo-drop-down-options [showTitle]="false"></dxo-drop-down-options>
 </dx-lookup>
   </div>
 </div>
 
 <div class="dx-fieldset">
-  <div class="dx-fieldset-header">Choose their devices :</div>
+  <div class="dx-fieldset-header">Choose the space :</div>
   <div class="dx-field">
     <dx-lookup
-    [dataSource]="devices"
-    displayExpr="name"
-    [(value)]="reference"
-    valueExpr="reference">
+  >
     <dxo-drop-down-options [showTitle]="false"></dxo-drop-down-options>
 </dx-lookup>
   </div>
@@ -60,13 +57,13 @@ keyExpr="udk">
 
 
 
-<dxi-column dataField="udk.cinu" caption="CIN" [width]="150">
+<dxi-column dataField="sus_key.cin" caption="CIN" [width]="150">
 
 </dxi-column>
 
 
 
-<dxi-column dataField="udk.reference" caption="Reference"   [width]="150">
+<dxi-column dataField="sus_key.idSpace" caption="Sapce"   [width]="150">
 
 
 </dxi-column>

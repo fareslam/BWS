@@ -19,6 +19,7 @@ children: [
 
 
 { path: 'rapport', loadChildren: () => import('./dashboard/rapport/rapport.module').then(m => m.RapportModule) },
+{ path: 'employspaces', loadChildren: () => import('./dashboard/employspaces/employspaces.module').then(m => m.EmployspacesModule) },
 
 { path: 'history', loadChildren: () => import('./dashboard/history/history.module').then(m => m.HistoryModule) },
 { path: 'employees', loadChildren: () => import('./dashboard/employees/employees.module').then(m => m.EmployeesModule) }
@@ -37,12 +38,15 @@ children: [
 
   { path: 'spaces', loadChildren: () => import('./admindashboard/spaces/spaces.module').then(m => m.SpacesModule) },
   { path: 'areas', loadChildren: () => import('./admindashboard/areas/areas.module').then(m => m.AreasModule) },
-
+  { path: 'clientareas', loadChildren: () => import('./admindashboard/clientareas/clientareas.module').then(m => m.ClientareasModule) }
+,
   { path: 'constraints', loadChildren: () => import('./admindashboard/constraints/constraints.module').then(m => m.ConstraintsModule) }
   ,{ path: 'devices', loadChildren: () => import('./admindashboard/devices/devices.module').then(m => m.DevicesModule) },
   { path: 'clientdevices', loadChildren: () => import('./admindashboard/client-devices/client-devices.module').then(m => m.ClientDevicesModule) }
 ]
-},
+}
+
+
 
 
 ]

@@ -10,6 +10,7 @@ import { UserDevice } from '../models/user-device';
 import { ConstraintCo2 } from '../models/constraint-co2';
 import { Area } from '../models/area';
 import { Space } from '../models/space';
+import { ClientArea } from '../models/client-area';
 
 @Injectable({
   providedIn: 'root'
@@ -95,7 +96,8 @@ addArea(a:Area):Observable<Object>
 listAreas():Observable<Area[]>
 {return this.http.get<Area[]>(`${this.API_URL}/area/all`);}
 
-
+deleteArea(idArea:Number):Observable<any>{
+  return this.http.delete(`${this.API_URL}/area/delete/${idArea}`,{ responseType: 'text' });}
 
 /*****Space Management***** */
 addSpace(s:Space):Observable<Object>
@@ -104,9 +106,19 @@ addSpace(s:Space):Observable<Object>
 listSpaces():Observable<any>
 {return this.http.get(`${this.API_URL}/space/all`);}
 
+deleteSpace(idSpace:Number):Observable<any>{
+  return this.http.delete(`${this.API_URL}/space/delete/${idSpace}`,{ responseType: 'text' });}
 
 
 
+
+/************** CLIENT Area MANAGMENT*********** */
+
+affectUserArea(ca:ClientArea):Observable<any>
+{return this.http.post(`${this.API_URL}/clientArea/add`,ca);}
+
+listUserAreas():Observable<any>
+{return this.http.get(`${this.API_URL}/clientArea/all`);}
 
 
 }

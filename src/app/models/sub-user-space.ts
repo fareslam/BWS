@@ -6,5 +6,5 @@ export class SubUserSpace {
     sus_key:SUSKey;
     space:Space;
     sub_user:SubUser;
-    nbr:number;
+    number:number;
 }

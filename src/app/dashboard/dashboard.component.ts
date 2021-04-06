@@ -50,7 +50,7 @@ export class DashboardComponent implements OnInit {
         data => {
           this.user=data;
           sessionStorage.setItem('user', JSON.stringify(this.user));
-          console.log(this.user.cinu,"temchii")
+
         },
 
         err => console.log(err));

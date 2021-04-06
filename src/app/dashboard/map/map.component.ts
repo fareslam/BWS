@@ -2,7 +2,7 @@ import { Component, AfterViewInit } from '@angular/core';
 import * as L from 'Leaflet';
 
 import '@geoman-io/leaflet-geoman-free';
-import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';   
+import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
 
 @Component({
   selector: 'app-map',
@@ -53,17 +53,17 @@ this.map = L.map('map',{
 const mainlayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   minZoom: 6,
   maxZoom: 17,
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright%22%3EOpenStreetMap</a> contributors'
 });
 
 this.map.pm.addControls({
   position: 'topleft',
   drawMarker: true,
-  drawCircle: false,
+  drawCircle: true,
   drawPolygon: true,
-  drawPolyline: false,
-  drawCircleMarker:false,
-  drawRectangle:false,
+  drawPolyline: true,
+  drawCircleMarker:true,
+  drawRectangle:true,
 });
 mainlayer.addTo(this.map);
 this.addMarker(BWS);

@@ -65,4 +65,22 @@ export class SpacesComponent implements OnInit {
 
     )
     }
+
+
+DeleteSpace(event)
+{
+  this.adminService.deleteSpace(event.data.idSpace).subscribe(
+    data=>{
+      console.log(data);
+      notify("Space deleted successfully", "success", 1500);
+      this.listSp();
+    },
+    err=>{
+      notify(err.error.message, "warning", 1500);
+      this.listAr();
+      console.log(err.error.message)
+    }
+
+  )
+}
 }

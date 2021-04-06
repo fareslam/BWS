@@ -88,7 +88,8 @@ insertSub(event) {
     "name":event.data.name,
     "surname":event.data.surname,
     "tel":event.data.tel,
-    "role":rolee
+    "role":rolee,
+    "cinu":this.subuser.cin
   };
 
   this.userService.addSubUser(this.subuser.cin,this.signup).subscribe(

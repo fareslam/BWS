@@ -3,12 +3,14 @@
 <dx-data-grid id="gridContainer"
 [showBorders]="true"
 [dataSource]="dataSource"
+[rowAlternationEnabled]="true"
 (onRowInserted)="addArea($event)"
+(onRowRemoved)="DeleteArea($event)"
 keyExpr="idArea">
 
 
 <dxo-paging [enabled]="false"></dxo-paging>
-<dxo-editing mode="popup"   [useIcons]="true"  [allowAdding]="true" ></dxo-editing>
+<dxo-editing mode="popup"   [useIcons]="true"  [allowAdding]="true" [allowDeleting]="true" ></dxo-editing>
 
 
 <dxi-column dataField="idArea" caption="idArea" [width] ="100">
