@@ -40,12 +40,16 @@ getuserBySubUser(cin:number):Observable<any>
 /************** EMPLOYEE SAPCE MANAGMENT*********** */
 
 affectSubUserSpace(ss:SubUserSpace):Observable<any>
-{return this.http.post(`${this.API_URL}/SubUserSapce/add`,ss);}
+{return this.http.post(`${this.API_URL}/SubUserSpace/add`,ss);}
 
 listSubUserSpaces():Observable<any>
-{return this.http.get(`${this.API_URL}/SubUserSapce/all`);}
+{return this.http.get(`${this.API_URL}/SubUserSpace/all`);}
 
 listUserSpacesperDevice(cinu:Number):Observable<any>
 {return this.http.get(`${this.API_URL}/SpacesPerUserDevice/${cinu}`);}
+
+
+SCNDlistUserSpacesperDevice(cinu:Number):Observable<any>
+{return this.http.get(`${this.API_URL}/SpacesPerUserDevice2/${cinu}`);}
 
 }

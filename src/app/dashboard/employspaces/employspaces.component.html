@@ -28,6 +28,10 @@
   <div class="dx-fieldset-header">Choose the space :</div>
   <div class="dx-field">
     <dx-lookup
+    [dataSource]="spaces"
+    displayExpr="name"
+    [(value)]="idSpace"
+    valueExpr="idSpace"
   >
     <dxo-drop-down-options [showTitle]="false"></dxo-drop-down-options>
 </dx-lookup>
@@ -50,7 +54,7 @@ id="button"
 [repaintChangesOnly]="true"
 
 [rowAlternationEnabled]="true"
-keyExpr="udk">
+keyExpr="sus_key">
 
 
 
@@ -63,7 +67,7 @@ keyExpr="udk">
 
 
 
-<dxi-column dataField="sus_key.idSpace" caption="Sapce"   [width]="150">
+<dxi-column dataField="sus_key.idSpace" caption="Space"   [width]="150">
 
 
 </dxi-column>

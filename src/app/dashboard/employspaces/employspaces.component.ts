@@ -37,11 +37,11 @@ export class EmployspacesComponent implements OnInit {
       },
 
       err => console.log(err));
-this.list();
+
 
 
     this.listSubUsers();
-
+    this.listSpaces();
     this.lisSubUserSpaces();
   }
 
@@ -49,18 +49,7 @@ this.list();
 
     }
 
-    list(){
-      this.userService.listSubUserByUser(this.subuser.cin).subscribe(
-        data => {
-          this.dataSource=data;
 
-
-          console.log(data)
-        },
-
-        err => console.log(err));
-
-  }
     listSubUsers()
     {
       this.userService.listSubUserByUser(this.subuser.cin).subscribe(
@@ -96,7 +85,22 @@ this.list();
     }
 
 
+    listSpaces(){
 
+
+      this.userService.SCNDlistUserSpacesperDevice(this.subuser.cin).subscribe(
+        data=> {
+          this.spaces=data;
+          console.log(data);
+
+        },
+        err=>{
+          console.log(err);
+            }
+      )
+
+
+    }
 
 
 save(){
@@ -113,7 +117,7 @@ save(){
     data=>{
       console.log(data);
       notify("Device assigned successfullt to the user ", "success", 1500);
-
+     this.lisSubUserSpaces();
     },
     err=>{
 
