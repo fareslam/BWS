@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SignUpRequest } from '../models/sign-up-request';
+import { Space } from '../models/space';
 import { SubUserSpace } from '../models/sub-user-space';
 
 @Injectable({
@@ -44,6 +45,7 @@ affectSubUserSpace(ss:SubUserSpace):Observable<any>
 listSubUserSpaces():Observable<any>
 {return this.http.get(`${this.API_URL}/SubUserSapce/all`);}
 
-
+listUserSpacesperDevice(cinu:Number):Observable<any>
+{return this.http.get(`${this.API_URL}/SpacesPerUserDevice/${cinu}`);}
 
 }
