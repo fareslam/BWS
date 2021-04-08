@@ -19,9 +19,12 @@ export class DevicesComponent implements OnInit {
 
 
   msg = '';
+  xx='';
   constructor(private adminService: AdminServiceService) { }
 
   ngOnInit(): void {
+
+
     this.readData();
     this.listSp();
     this.listConst();
@@ -97,6 +100,7 @@ addDevice(event){
   this.adminService.addDevice(event.data).subscribe(
     data=>{console.log(data);
       notify("Device added successfully", "success", 1500);
+
       this.readData();},
       err=>{
       notify(err.error.message, "warning", 1500);
