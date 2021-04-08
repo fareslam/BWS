@@ -17,16 +17,10 @@ keyExpr="reference"
 <dxo-editing mode="popup"   [useIcons]="true"  [allowAdding]="true" [allowDeleting]="true"></dxo-editing>
 
 
-<dxi-column dataField="reference" caption="Reference" [width] ="100">
+<dxi-column dataField="reference" caption="Reference" >
   <dxi-validation-rule type="required"></dxi-validation-rule>
 </dxi-column>
-<dxi-column dataField="name" caption="Name">
-  <dxi-validation-rule type="required"></dxi-validation-rule>
-</dxi-column>
-<dxi-column dataField="longitude" caption="Longitude" dataType="number">
-  <dxi-validation-rule type="required"></dxi-validation-rule>
-</dxi-column>
-<dxi-column dataField="latitude" caption="Latitude" dataType="number">
+<dxi-column dataField="name" caption="Name" >
   <dxi-validation-rule type="required"></dxi-validation-rule>
 </dxi-column>
 
@@ -34,7 +28,8 @@ keyExpr="reference"
 
 
 
-<dxi-column dataField="idSpace" caption="Space" [width]="125">
+
+<dxi-column dataField="idSpace" caption="Space" >
 
   <dxo-lookup
   [dataSource]="spaces"
@@ -46,13 +41,14 @@ keyExpr="reference"
 
 
 
-<dxi-column dataField="idConstraint" caption="Constraint"   [width]="125">
-
+<dxi-column dataField="idConstraint" caption="Constraint"   >
+  <div *ngIf="this.cons.length!=0">
   <dxo-lookup
   [dataSource]="cons"
   displayExpr="nameConstraint"
   valueExpr="idConstraint">
 </dxo-lookup>
+</div>
 <dxi-validation-rule type="required"></dxi-validation-rule>
 </dxi-column>
 

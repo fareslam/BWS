@@ -69,7 +69,7 @@ export class EmployspacesComponent implements OnInit {
 
     lisSubUserSpaces()
     {
-      this.userService.listSubUserSpaces().subscribe(
+      this.userService.newList(this.subuser.cin).subscribe(
         data => {
 
           this.listud = data;

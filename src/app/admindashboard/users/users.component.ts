@@ -13,11 +13,25 @@ export class UsersComponent implements OnInit {
   cin: Number;
   dataSource: User[] = [];
   msg = '';
+  cin_admin:number;
+  admin:any;
+  subuser:any;
   signup:any={};
 
   constructor(private adminService: AdminServiceService) {}
 
   ngOnInit(): void {
+    this.subuser=JSON.parse( sessionStorage.getItem('auth-user'));
+    this.adminService.getAdmin(this.subuser.cin).subscribe(
+      data => {
+        this.admin=data;
+        this.cin_admin=this.admin.cin_admin;
+        console.log("cinADMIN"+this.cin_admin)
+        sessionStorage.setItem('admin', JSON.stringify(this.admin));
+
+      },
+
+      err => console.log(err.error.message));
     this.readData();
   }
 
@@ -67,7 +81,8 @@ export class UsersComponent implements OnInit {
       "dateBirth":event.data.subuser.dateBirth,
       "name":event.data.subuser.name,
       "surname":event.data.subuser.surname,
-      "tel":event.data.subuser.tel
+      "tel":event.data.subuser.tel,
+      "cin_admin":this.cin_admin
     };
 
     this.adminService.addUser(this.signup).subscribe(

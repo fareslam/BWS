@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnChanges } from '@angular/core';
 import { Device } from 'src/app/models/device';
 import { AdminServiceService } from 'src/app/services/admin-service.service';
 import notify from 'devextreme/ui/notify';
@@ -12,22 +12,24 @@ import { Area } from 'src/app/models/area';
   styleUrls: ['./devices.component.css']
 })
 
-export class DevicesComponent implements OnInit {
+export class DevicesComponent implements OnInit{
   dataSource: Device[] = [];
   spaces: Space[] = [];
-  cons: ConstraintCo2[] = [];
+   cons: ConstraintCo2[];
 
 
   msg = '';
   xx='';
   constructor(private adminService: AdminServiceService) { }
 
-  ngOnInit(): void {
 
+  ngOnInit(): void {
 
     this.readData();
     this.listSp();
     this.listConst();
+
+
   }
   readData() {
     this.adminService.listdevices().subscribe(
@@ -39,7 +41,7 @@ export class DevicesComponent implements OnInit {
       },
 
       err=> {
-        console.log(err);});}
+        console.log(err.error.message);});}
 
         listConst() {
           this.adminService.listConstraints().subscribe(
@@ -69,7 +71,7 @@ export class DevicesComponent implements OnInit {
                    console.log(data);
                         },
                         err=>{
-                          console.log(err);
+                          console.log(err.error.message);
                             }
                       )
                     }

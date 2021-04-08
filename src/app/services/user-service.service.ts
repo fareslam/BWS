@@ -45,6 +45,10 @@ affectSubUserSpace(ss:SubUserSpace):Observable<any>
 listSubUserSpaces():Observable<any>
 {return this.http.get(`${this.API_URL}/SubUserSpace/all`);}
 
+newList(cinu:Number):Observable<any>
+{return this.http.get(`${this.API_URL}/${cinu}/SubUserSpace/all`);}
+
+/************** LIST OF SPACE PER DEVICE /USER *********** */
 listUserSpacesperDevice(cinu:Number):Observable<any>
 {return this.http.get(`${this.API_URL}/SpacesPerUserDevice/${cinu}`);}
 

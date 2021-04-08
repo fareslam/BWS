@@ -1,3 +1,25 @@
+
+
+
+
+<h4 class="display-4" style="text-align: center;">Add new area(s)</h4>
+<hr>
+
+
+<br>
+
+<div class="map-wrapper">
+    <div class="map-border">
+        <div id="map">
+
+        </div>
+    </div>
+</div>
+<br>
+
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
 <h4 class="display-4"  style="text-align: center;">Areas Management</h4>
 <hr>
 <dx-data-grid id="gridContainer"
@@ -13,19 +35,18 @@ keyExpr="idArea">
 <dxo-editing mode="popup"   [useIcons]="true"  [allowAdding]="true" [allowDeleting]="true" ></dxo-editing>
 
 
-<dxi-column dataField="idArea" caption="idArea" [width] ="100">
+<dxi-column dataField="idArea" caption="idArea">
   <dxi-validation-rule type="required"></dxi-validation-rule>
 </dxi-column>
 <dxi-column dataField="name" caption="Name">
   <dxi-validation-rule type="required"></dxi-validation-rule>
 </dxi-column>
-<dxi-column dataField="longitude" caption="Longitude" dataType="number">
-  <dxi-validation-rule type="required"></dxi-validation-rule>
-</dxi-column>
-<dxi-column dataField="latitude" caption="Latitude" dataType="number">
-  <dxi-validation-rule type="required"></dxi-validation-rule>
-</dxi-column>
 
+<dxi-column type="buttons" [width]="110" caption="Actions">
+
+  <dxi-button name="delete"></dxi-button>
+
+  </dxi-column>
 
 
 </dx-data-grid>

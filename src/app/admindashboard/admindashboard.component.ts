@@ -2,6 +2,7 @@ import {  Component, ViewChild, enableProdMode, AfterViewInit }  from '@angular/
 import {  OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkWithHref } from '@angular/router';
 import { DxDrawerComponent } from 'devextreme-angular/ui/drawer';
+import { AdminServiceService } from 'src/app/services/admin-service.service';
 
 @Component({
   selector: 'app-admindashboard',
@@ -16,10 +17,25 @@ export class AdmindashboardComponent implements OnInit {
     selectedRevealMode: string = 'slide';
     isDrawerOpen: Boolean = true;
     elementAttr: any;
+    admin:any;
+    subuser:any;
 
-    constructor(private router: Router) {
+    constructor(private router: Router,private adminService: AdminServiceService) {
 
 
+    }
+
+
+    ngOnInit() {
+      this.subuser=JSON.parse( sessionStorage.getItem('auth-user'));
+      this.adminService.getAdmin(this.subuser.cin).subscribe(
+        data => {
+          this.admin=data;
+          sessionStorage.setItem('admin', JSON.stringify(this.admin));
+
+        },
+
+        err => console.log(err));
     }
 
     toolbarContent = [{
@@ -39,9 +55,7 @@ export class AdmindashboardComponent implements OnInit {
          } ];
 
 
-    ngOnInit() {
 
-    }
 
     logout(){
       window.sessionStorage.clear();
