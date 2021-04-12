@@ -11,17 +11,19 @@ import { Area } from 'src/app/models/area';
 export class SpacesComponent implements OnInit {
   dataSource: Space[] = [];
   areas: Area[] = [];
+  xx: Area[] = [];
 
   constructor(private adminService: AdminServiceService) { }
 
   ngOnInit(): void {
     this.listSp();
     this.listAr();
+    this.listAre();
   }
 
 
 
-  listAr()
+  listAre()
   {
     this.adminService.listAreas().subscribe(
       data=> {
@@ -34,6 +36,51 @@ export class SpacesComponent implements OnInit {
     )
   }
 
+  listAr()
+  {
+    this.adminService.listAreas().subscribe(
+      data=> {
+        this.xx=data;
+        console.log(data);
+      },
+      err=>{
+        console.log(err);
+          }
+    )
+  }
+
+addArea(event){
+this.adminService.addArea(event.data).subscribe(
+  data=>{
+    console.log(data);
+    notify("Area added successfully", "success", 1500);
+    this.listAr();
+  },
+  err=>{
+    notify(err.error.message, "warning", 1500);
+    this.listAr();
+    console.log(err.error.message)
+  }
+
+)
+}
+
+DeleteArea(event)
+{
+  this.adminService.deleteArea(event.data.idArea).subscribe(
+    data=>{
+      console.log(data);
+      notify("Area deleted successfully", "success", 1500);
+      this.listAr();
+    },
+    err=>{
+      notify(err.error.message, "warning", 1500);
+      this.listAr();
+      console.log(err.error.message)
+    }
+
+  )
+}
 
 
   listSp()

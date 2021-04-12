@@ -18,35 +18,7 @@
 <br>
 
 
+<script>
 
-<br><br><br><br><br><br><br><br><br><br><br><br>
-<h4 class="display-4"  style="text-align: center;">Areas Management</h4>
-<hr>
-<dx-data-grid id="gridContainer"
-[showBorders]="true"
-[dataSource]="dataSource"
-[rowAlternationEnabled]="true"
-(onRowInserted)="addArea($event)"
-(onRowRemoved)="DeleteArea($event)"
-keyExpr="idArea">
+</script>
 
-
-<dxo-paging [enabled]="false"></dxo-paging>
-<dxo-editing mode="popup"   [useIcons]="true"  [allowAdding]="true" [allowDeleting]="true" ></dxo-editing>
-
-
-<dxi-column dataField="idArea" caption="idArea">
-  <dxi-validation-rule type="required"></dxi-validation-rule>
-</dxi-column>
-<dxi-column dataField="name" caption="Name">
-  <dxi-validation-rule type="required"></dxi-validation-rule>
-</dxi-column>
-
-<dxi-column type="buttons" [width]="110" caption="Actions">
-
-  <dxi-button name="delete"></dxi-button>
-
-  </dxi-column>
-
-
-</dx-data-grid>

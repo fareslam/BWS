@@ -3,7 +3,7 @@
 
 @import "https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.css" ;
 .map-wrapper {
-  position: absolute;
+  position:absolute;
   top: 0px;
   left: 0;
   right: 0;
@@ -19,6 +19,6 @@
 
 #map {
   height: 100%;
+
 }
 
-#gridContainer{padding-bottom: 12px;}

@@ -12,7 +12,7 @@ keyExpr="idSpace">
 
 
 <dxo-paging [enabled]="false"></dxo-paging>
-<dxo-editing mode="popup"   [useIcons]="true"  [allowAdding]="true" [allowDeleting]="true" ></dxo-editing>
+<dxo-editing mode="popup"   [useIcons]="true"      [allowAdding]="true" [allowDeleting]="true" ></dxo-editing>
 
 
 <dxi-column dataField="idSpace" caption="idSpace" [width] ="100">
@@ -40,5 +40,44 @@ keyExpr="idSpace">
 </dxo-lookup>
 <dxi-validation-rule type="required"></dxi-validation-rule>
 </dxi-column>
+
+</dx-data-grid>
+  <br>
+
+
+
+<h4 class="display-4"  style="text-align: center;">Areas Management</h4>
+<hr>
+<dx-data-grid id="gridContainer"
+[showBorders]="true"
+[dataSource]="xx"
+[rowAlternationEnabled]="true"
+(onRowInserted)="addArea($event)"
+(onRowRemoved)="DeleteArea($event)"
+keyExpr="idArea">
+
+
+<dxo-paging [enabled]="false"></dxo-paging>
+<dxo-editing mode="popup"   [useIcons]="true" [allowUpdating]="true"  [allowAdding]="true" [allowDeleting]="true" ></dxo-editing>
+
+
+<dxi-column dataField="idArea" caption="idArea">
+  <dxi-validation-rule type="required"></dxi-validation-rule>
+</dxi-column>
+<dxi-column dataField="name" caption="Name">
+  <dxi-validation-rule type="required"></dxi-validation-rule>
+</dxi-column>
+
+<dxi-column type="buttons" [width]="110" caption="Actions">
+
+  <dxi-button name="delete"></dxi-button>
+  <dxi-button name="edit"></dxi-button>
+  <dxi-button
+  hint="view"
+  icon="search"
+
+></dxi-button>
+  </dxi-column>
+
 
 </dx-data-grid>
