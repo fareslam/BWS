@@ -16,6 +16,7 @@ import { ClientArea } from '../models/client-area';
   providedIn: 'root'
 })
 export class AdminServiceService {
+
   private API_URL='http://localhost:9191/api/bws/admin';
 
   private httpOptions = {
@@ -90,8 +91,10 @@ deleteConstraint(idConstraint:Number):Observable<any>{
 
 /********** AREA MANGMENT ***** */
 
-addArea(a:Area):Observable<Object>
-{return this.http.post(`${this.API_URL}/area/add`,a);}
+addArea(a:any):Observable<any>
+{ console.log("xxxxxx"+a);
+  return this.http.post(`${this.API_URL}/area/add`,a);
+}
 
 listAreas():Observable<Area[]>
 {return this.http.get<Area[]>(`${this.API_URL}/area/all`);}
@@ -100,7 +103,7 @@ deleteArea(idArea:Number):Observable<any>{
   return this.http.delete(`${this.API_URL}/area/delete/${idArea}`,{ responseType: 'text' });}
 
 /*****Space Management***** */
-addSpace(s:Space):Observable<Object>
+addSpace(s:any):Observable<any>
 {return this.http.post(`${this.API_URL}/space/add`,s);}
 
 listSpaces():Observable<any>

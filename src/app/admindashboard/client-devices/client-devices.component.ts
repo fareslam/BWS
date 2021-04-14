@@ -111,7 +111,7 @@ save(){
 
     data=>{
       console.log(data);
-      notify("Device assigned successfullt to the user ", "success", 1500);
+      notify("Device assigned successfully to the user ", "success", 1500);
       this.listUsersDevice();
     },
     err=>{
