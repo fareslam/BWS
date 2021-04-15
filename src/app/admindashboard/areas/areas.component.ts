@@ -22,7 +22,8 @@ export class AreasComponent implements  AfterViewInit,OnInit {
 
   map;
   on;
-
+spaces=[];
+areas=[];
    gbeli = [
     { lat: 33.97980872872457,
     lng: 9.42626953125},
@@ -35,6 +36,7 @@ export class AreasComponent implements  AfterViewInit,OnInit {
 
   ];
 
+   res;
   smallIcon = new L.Icon({
     iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-icon.png',
       iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-icon-2x.png',
@@ -51,7 +53,8 @@ export class AreasComponent implements  AfterViewInit,OnInit {
 
   ngOnInit(): void {
 
-
+    this.listSpaces();
+    this.listAreas();
 
   }
   ngAfterViewInit(): void {
@@ -119,7 +122,7 @@ this.map.on('draw:created', function (e) {
 
   drawnItems.addLayer(layer);
 
-  var bb=[]; var shapes = [];
+  var shapes = []; let tab:any;   var bb=[];
 
   drawnItems.eachLayer(function(layer) {
       if (layer instanceof L.Polygon) {
@@ -128,32 +131,25 @@ this.map.on('draw:created', function (e) {
           //
           var shape_for_db = JSON.stringify(shape);
           alert("Poly "+layer.getLatLngs());
-          for(var i=0;i<layer.getLatLngs()[0].length;i++)
+           tab=layer.getLatLngs()[0];
+          for(var i=0;i<tab.length;i++)
                 {
-                  console.log("LAT==>"+ layer.getLatLngs()[0][i]["lat"]);
-                  console.log("LONG==>"+ layer.getLatLngs()[0][i]["lng"]);
+                  console.log("LAT==>"+ tab[i]["lat"]);
+                  console.log("LONG==>"+ tab[i]["lng"]);
 
-                  bb.push("["+[layer.getLatLngs()[0][i]["lat"],layer.getLatLngs()[0][i]["lng"]+"]"]);
 
+     bb.push("["+[layer.getLatLngs()[0][i]["lat"],layer.getLatLngs()[0][i]["lng"]+"]"]);
 
                 }
-             console.log("bb "+bb)
 
-              var form:any={
-                  "idArea":85,
-                "name":"",
-                "geojson":bb
-                           };
-
-              var s=JSON.stringify(bb);
-              var p=JSON.stringify(layer.toGeoJSON().geometry.coordinates);
-             console.log("form "+form)
-
-
+             console.log("length "+tab.length)
+              var p=JSON.stringify(layer.toGeoJSON());
               ad.addArea({ "name":"","geojson":p}).subscribe(
                    data=>{
                       console.log(data);
                       notify("Area added successfully ", "success", 1500);
+                      window.location.reload()
+
                 },
                   err=>{
                       console.log(err.error.message);
@@ -181,8 +177,8 @@ this.map.on('draw:created', function (e) {
           //format json
           var lat = layer.getLatLng().lat;
           var lng = layer.getLatLng().lng;
-          alert("marker "+layer.getLatLng());
-          layer.bindPopup('Longitude='+lng+' | Latitude= '+lat);
+         // alert("marker "+layer.getLatLng());
+
           ad.addSpace(
             { "name":"",
             "longitude":lng,
@@ -190,7 +186,9 @@ this.map.on('draw:created', function (e) {
         }).subscribe(
             data=>{
                console.log(data);
+               layer.bindPopup('Longitude='+lng+' | Latitude= '+lat);
                notify("Space added successfully ", "success", 1500);
+               window.location.reload()
          },
            err=>{
                console.log(err.error.message);
@@ -231,15 +229,76 @@ addMarker(coords){
   const marker =L.marker([coords.lat, coords.lng],{icon: this.smallIcon});
   marker.addTo(this.map);
 
+}
+
+listSpaces(){
 
 
+  this.adminService.listSpaces().subscribe(
+    data=> {
+      this.spaces=data;
+      console.log(data);
+     for(let i=0;i<this.spaces.length;i++)
+      {
+       console.log("Longitude ==>",this.spaces[i]["longitude"])
+       console.log("latitude ==>",this.spaces[i]["latitude"])
 
+
+       const marker =L.marker([this.spaces[i]["latitude"], this.spaces[i]["longitude"]],{icon: this.smallIcon});
+       marker.addTo(this.map);
+
+      }
+    }
+    ,
+    err=>{
+      console.log(err.error.message);
+        }
+  )
 
 
 }
+
+
+
+listAreas(){
+
+  this.adminService.listAreas().subscribe(
+    data=> {
+      this.areas=data;
+      console.log(data);
+      let ch :any;
+
+     for(let i=0;i<this.areas.length;i++)
+      {
+       console.log("GeoJson ==>",this.areas[i]["geojson"])
+
+       let a = JSON.parse(this.areas[i]["geojson"]);
+       console.log("aa"+a);
+
+       ch=this.areas[i]["geojson"];
+       ch = ch.substring(1,ch.length-1);
+        this.res = Array.from(a);
+        console.log("ch  "+ch);
+        console.log("res  "+this.res);
+        const geojson = new L.GeoJSON(a).addTo(this.map);
+
+      }
+
+    }
+    ,
+    err=>{
+      console.log(err.error.message);
+        }
+  )
+
+
+}
+
+
+
 /*
 addPoly(coords){
-  var poly = L.polygon().addTo(this.map);
+  var
 
 }
 */

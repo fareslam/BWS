@@ -58,7 +58,7 @@ keyExpr="idArea">
 
 
 <dxo-paging [enabled]="false"></dxo-paging>
-<dxo-editing mode="popup"   [useIcons]="true" [allowUpdating]="true"  [allowAdding]="true" [allowDeleting]="true" ></dxo-editing>
+<dxo-editing mode="popup"   [useIcons]="true"   [allowAdding]="true" [allowDeleting]="true" ></dxo-editing>
 
 
 <dxi-column dataField="idArea" caption="idArea">
@@ -67,11 +67,13 @@ keyExpr="idArea">
 <dxi-column dataField="name" caption="Name">
   <dxi-validation-rule type="required"></dxi-validation-rule>
 </dxi-column>
-
+<dxi-column dataField="geojson" caption="GeoJson">
+  <dxi-validation-rule type="required"></dxi-validation-rule>
+</dxi-column>
 <dxi-column type="buttons" [width]="110" caption="Actions">
 
   <dxi-button name="delete"></dxi-button>
-  <dxi-button name="edit"></dxi-button>
+
   <dxi-button
   hint="view"
   icon="search"
