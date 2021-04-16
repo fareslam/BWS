@@ -19,6 +19,7 @@ export class SpacesComponent implements OnInit {
     this.listSp();
     this.listAr();
     this.listAre();
+
   }
 
 
@@ -83,6 +84,24 @@ DeleteArea(event)
 }
 
 
+updateSpace(event){
+
+  this.adminService.updateSpace(event.data.idSpace,event.data).subscribe(
+    data=>{console.log(data);
+      notify("Space Updated successfully", "success", 1500);
+      this.listSp();},
+      err=>{
+      notify(err.error.message, "warning", 1500);
+      this.listSp();
+      console.log(err.error.message)
+    }
+  )
+  console.log(event)
+}
+
+
+
+
   listSp()
   {
     this.adminService.listSpaces().subscribe(
@@ -112,6 +131,7 @@ DeleteArea(event)
 
     )
     }
+
 
 
 DeleteSpace(event)

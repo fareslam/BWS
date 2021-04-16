@@ -113,7 +113,8 @@ deleteSpace(idSpace:Number):Observable<any>{
   return this.http.delete(`${this.API_URL}/space/delete/${idSpace}`,{ responseType: 'text' });}
 
 
-
+  updateSpace(idSpace:Number,s:Space):Observable<any>
+  {return this.http.put(`${this.API_URL}/space/update/${idSpace}`,s);}
 
 /************** CLIENT Area MANAGMENT*********** */
 
