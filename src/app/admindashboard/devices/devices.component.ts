@@ -14,7 +14,7 @@ import { Area } from 'src/app/models/area';
 
 export class DevicesComponent implements OnInit{
 device:Device;
-currentDevice: Device = new Device();
+currentDevice: Device=new Device();
 popupVisible = false;
 popupUpdate = false;
 name:String;
@@ -51,7 +51,10 @@ constructor(private adminService: AdminServiceService) {
 }
 
 ngOnInit(): void
-{this.readData();
+{
+
+
+  this.readData();
 
 
 this.listSp();
@@ -167,7 +170,16 @@ save(device){
                             this.popupDelete = false;
 
                             notify("Device deleted successfully", "success", 1500);
-                          window.location.reload()
+                            this.adminService.listdevices().subscribe(
+                              data => {
+
+                                this.dataSource = data;
+
+                                console.log(data);
+                              },
+
+                              err=> {
+                                console.log(err.error.message);});
 
                           }
 
@@ -206,7 +218,16 @@ save(device){
 
         this.popupAdd = false;
 
-        window.location.reload()
+        this.adminService.listdevices().subscribe(
+          data => {
+
+            this.dataSource = data;
+
+            console.log(data);
+          },
+
+          err=> {
+            console.log(err.error.message);});
       },
         err=>{
         notify(err.error.message, "warning", 1500);
