@@ -6,6 +6,7 @@ export class Space {
     idspace:number;
     longitude:number;
     latitude:number;
+    name:String;
     list_devices_space:Device[];
     area:Area;
     idArea:number;

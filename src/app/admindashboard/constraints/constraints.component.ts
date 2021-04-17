@@ -38,8 +38,14 @@ export class ConstraintsComponent implements OnInit {
 
 
   addConstraint(event){
+let form:any={
+  "nameConstraint":event.data.nameConstraint,
+  "min_value":event.data.min_value,
+  "max_value":event.data.max_value,
 
-    this.adminService.addConstraint(event.data).subscribe(
+}
+
+    this.adminService.addConstraint(form).subscribe(
       data=>{console.log(data);
         notify("Constraint added successfully", "success", 1500);
         this.readData();},

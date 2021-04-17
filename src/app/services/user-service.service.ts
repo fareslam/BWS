@@ -53,6 +53,9 @@ listUserSpacesperDevice(cinu:Number):Observable<any>
 {return this.http.get(`${this.API_URL}/SpacesPerUserDevice/${cinu}`);}
 
 
+listAreaperUser(cinu:Number):Observable<any>
+{return this.http.get(`${this.API_URL}/AreasPerUser/${cinu}`);}
+
 SCNDlistUserSpacesperDevice(cinu:Number):Observable<any>
 {return this.http.get(`${this.API_URL}/SpacesPerUserDevice2/${cinu}`);}
 

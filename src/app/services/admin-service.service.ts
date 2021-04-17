@@ -37,10 +37,10 @@ addDevice(d:Device):Observable<any>{
   return this.http.post(`${this.API_URL}/device/add`,d);
 
 }
-/*
-updateDevice(ref:string):Observable<any>{
-  return this.http.post(`${this.API_URL}/update/${ref}`);
-}*/
+
+updateDevice(reference:string,d:Device):Observable<any>{
+  return this.http.put(`${this.API_URL}/device/update/${reference}`,d);
+}
 
 listdevices():Observable<any>
  {return this.http.get(`${this.API_URL}/device/all`);}
@@ -80,6 +80,9 @@ listUserDevices():Observable<any>
 addConstraint(c:ConstraintCo2):Observable<any>
 {return this.http.post(`${this.API_URL}/constraint/add`,c);}
 
+getConstraint(idConstraint:Number):Observable<any>
+{return this.http.get(`${this.API_URL}/constraint/${idConstraint}`);}
+
 updateConstraint(idConstraint:Number,c:ConstraintCo2):Observable<any>
 {return this.http.put(`${this.API_URL}/constraint/update/${idConstraint}`,c);}
 
@@ -105,6 +108,9 @@ deleteArea(idArea:Number):Observable<any>{
 /*****Space Management***** */
 addSpace(s:any):Observable<any>
 {return this.http.post(`${this.API_URL}/space/add`,s);}
+
+getSpace(idSpace:Number):Observable<any>
+{return this.http.get(`${this.API_URL}/space/${idSpace}`);}
 
 listSpaces():Observable<any>
 {return this.http.get(`${this.API_URL}/space/all`);}

@@ -4,16 +4,16 @@ import { Space } from "./space";
 import { UserDevice } from "./user-device";
 
 export class Device {
-    
+
     reference:string;
     name:string;
     longitude:number;
     latitude:number;
     list_user_devices:UserDevice[];
     space:Space;
-    idspace:number;
+    idSpace:number;
     constraint_co2:ConstraintCo2;
-    idconstraint:number;
+    idConstraint:number;
     list_rt_co2:RtCo2[];
 
 }

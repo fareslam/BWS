@@ -1,1 +1,34 @@
 @import"../../../bootstrap.css";
+::ng-deep #container {
+  padding: 10px;
+}
+::ng-deep #container ul {
+  list-style-type: none;
+  text-align: center;
+}
+::ng-deep #container ul li {
+  display: inline-block;
+  width: 160px;
+  margin: 10px;
+}
+::ng-deep #container ul li img{
+  width: 100px;
+}
+::ng-deep .button-info {
+  margin: 10px;
+}
+::ng-deep .dx-popup-content p {
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+
+.form-control input-sm chat-input{
+  background:transparent!important;
+  color:white!important;
+  font-size: 18px!important;
+  width: 200px;
+}
+.form-control input-sm chat-input{
+  border-radius: 10px;
+}

@@ -1,67 +1,233 @@
-<h4 class="display-4" style="text-align: center;">Devices Management</h4>
+
+
+<h4 class="display-4"  style="text-align: center;">Devices Management</h4>
 <hr>
-&nbsp; &nbsp;
-<dx-data-grid id="gridContainer"
-[showBorders]="true"
-[dataSource]="dataSource"
-[repaintChangesOnly]="true"
-[rowAlternationEnabled]="true"
-(onRowInserted)="addDevice($event)"
-(onRowRemoved)="removeDevice($event)"
-keyExpr="reference"
 
->
+<div id="container">
 
 
-<dxo-paging [enabled]="false"></dxo-paging>
-<dxo-editing mode="popup"   [useIcons]="true"  [allowAdding]="true" [allowDeleting]="true"></dxo-editing>
+  <dx-button
+  icon="plus"
+  stylingMode="outlined"
+  text="Add"
+  type="default" (onClick)="addDev(device)">
+  </dx-button>
 
 
-<dxi-column dataField="reference" caption="Reference" >
-  <dxi-validation-rule type="required"></dxi-validation-rule>
-</dxi-column>
-<dxi-column dataField="name" caption="Name" >
-  <dxi-validation-rule type="required"></dxi-validation-rule>
-</dxi-column>
+  <ul>
+      <li *ngFor="let device of currentDevice">
+      <img src="../../../assets/co2.jpg" ><br/>
+          <i>{{device.reference}}</i><br/>
+         <div style="display:inline">
+          <dx-button
+              class="button-info"
+              [width]="33"
+              icon="search"
+              type="default"
+              (onClick)="showInfo(device)">
+          </dx-button>
+
+          <dx-button
+          class="button-info"
+          icon="edit"
+          type="success"
+          [width]="33"
+          (onClick)="updateDevice(device)">
+      </dx-button>
+
+      <dx-button
+      class="button-info"
+      icon="trash"
+      type="danger"
+      [width]="33"
+      (onClick)="deleteDevice(device)">
+  </dx-button>
+      </div>
+  </ul>
+
+  <dx-popup
+      [width]="500"
+      [height]="500"
+      [showTitle]="true"
+      title="Device Informations"
+      [dragEnabled]="false"
+      [closeOnOutsideClick]="true"
+      [(visible)]="popupVisible">
+      <div *dxTemplate="let data of 'content'">
+
+          <p>   <b>Reference :</b>
+              <span>{{device.reference}}</span>
+          </p>
+          <hr>
+          <p>
+            <b>Name :</b>
+              <span>{{device.name}}</span>
+          </p>
+          <hr>
+          <p>
+            <b>Space :</b> <br>
+            <span>{{nameS}}</span>
+          </p>
+          <hr>
+          <p>
+            <b>Constraint :</b> :<br>
+            <span>{{nameC}}</span>
+          </p>
+
+      </div>
+  </dx-popup>
 
 
 
 
 
 
-<dxi-column dataField="idSpace" caption="Space" >
 
-  <dxo-lookup
-  [dataSource]="spaces"
-  displayExpr="name"
-  valueExpr="idSpace">
-</dxo-lookup>
-<dxi-validation-rule type="required"></dxi-validation-rule>
-</dxi-column>
+  <dx-popup
+      [width]="500"
+      [height]="450"
+      [showTitle]="true"
+      title="Updating a device"
+      [dragEnabled]="false"
+      [closeOnOutsideClick]="true"
+      [(visible)]="popupUpdate">
+      <div *dxTemplate="let data of 'content'">
+
+        <div class="form-login">
+
+
+          <form >
+       <b> Reference:  </b>  <dx-text-box [(value)]="device.reference" disabled="true" ></dx-text-box><br>
+
+       <b> Name:  </b>     <dx-text-box [(value)]="device.name" ></dx-text-box><br>
+
+       <b> Space:  </b>  <dx-select-box [dataSource]="spaces"    displayExpr="name"
+       [(value)]="device.idSpace"
+       valueExpr="idSpace">
+        <dx-validator>
+            <dxi-validation-rule type="required" message="Space is required"></dxi-validation-rule>
+        </dx-validator>
+    </dx-select-box><br>
 
 
 
-<dxi-column dataField="idConstraint" caption="Constraint"   >
-  <div *ngIf="this.cons.length!=0">
-  <dxo-lookup
-  [dataSource]="cons"
-  displayExpr="nameConstraint"
-  valueExpr="idConstraint">
-</dxo-lookup>
+    <b> Constraint:  </b>  <dx-select-box [dataSource]="cons"    displayExpr="nameConstraint"
+    [(value)]="device.idConstraint"
+    valueExpr="idConstraint">
+     <dx-validator>
+         <dxi-validation-rule type="required" message="Constraint is required"></dxi-validation-rule>
+     </dx-validator>
+ </dx-select-box>
+          </form>
+
+   <br>
+   <br>
+     &nbsp;&nbsp;
+       <dx-button
+       icon="edit"
+       type="success"
+       text="Edit"
+       (onClick)="save(device)"
+       id="log"
+       >
+     </dx-button></div>
+
+     </div>
+
+
+  </dx-popup>
+
+
+
+
+
+
+
+
+  <dx-popup
+      [width]="500"
+      [height]="450"
+      [showTitle]="true"
+      title="Adding a device"
+      [dragEnabled]="false"
+      [closeOnOutsideClick]="true"
+      [(visible)]="popupAdd">
+
+
+        <div class="form-login">
+
+
+          <form >
+       <b> Reference:  </b>  <dx-text-box dataField="reference" [(value)]="reference" required="true" >
+
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+
+       </dx-text-box><br>
+
+       <b> Name:  </b>     <dx-text-box [(value)]="name" dataField="name" required="true">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+       </dx-text-box><br>
+
+       <b> Space:  </b>  <dx-select-box [dataSource]="spaces"    displayExpr="name"
+       [(value)]="idSpace"
+       valueExpr="idSpace">
+       <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dx-select-box><br>
+
+
+
+    <b> Constraint:  </b>  <dx-select-box [dataSource]="cons"    displayExpr="nameConstraint"
+    [(value)]="idConstraint"
+    valueExpr="idConstraint">
+    <dxi-validation-rule type="required"></dxi-validation-rule>
+ </dx-select-box>
+
+
+   <br>
+   <br>
+     &nbsp;&nbsp;
+       <dx-button
+       icon="plus"
+       type="success"
+       text="Add"
+       (onClick)="add()"
+
+       id="log"
+       >
+     </dx-button>
+
+    </form>
+  </div>
+
+  </dx-popup>
+
+
+
+
+
+
+  <dx-popup
+      [width]="500"
+      [height]="200"
+      [showTitle]="true"
+      title="Deleting a device"
+      [dragEnabled]="false"
+      [closeOnOutsideClick]="true"
+      [(visible)]="popupDelete">
+      <div *dxTemplate="let data of 'content'">
+      <h5>Are you sure to delete the device with ref:<span style="color: red;">{{device.reference}}</span> ?</h5><br/>
+     <br>
+      <dx-button
+       icon="trash"
+       type="danger"
+       text="Delete"
+
+       (onClick)="delete(device)"
+        id="log"
+       >
+
+     </dx-button>
+    </div>
+  </dx-popup>
+
 </div>
-<dxi-validation-rule type="required"></dxi-validation-rule>
-</dxi-column>
-
-
-
-
-
-
-  <dxi-column type="buttons" [width]="110" caption="Actions">
-
-    <dxi-button name="delete"></dxi-button>
-
-    </dxi-column>
-
-
-</dx-data-grid>

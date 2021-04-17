@@ -31,6 +31,7 @@ cin:number;
 idSpace:Number;
 user:any;
 subuser:any;
+ar=[];
 
 reference:String;
 form:any={};
@@ -63,6 +64,7 @@ smallIcon = new L.Icon({
 
       err => console.log(err));
       this.listSpaces();
+      this.listAreas();
 
 
   }
@@ -80,6 +82,7 @@ smallIcon = new L.Icon({
 
       err => console.log(err));
     this.listSpaces();
+    this.listAreas();
 
   }
   listSpaces(){
@@ -96,7 +99,7 @@ smallIcon = new L.Icon({
 
 
            const marker =L.marker([this.spaces[i][1], this.spaces[i][0]],{icon: this.smallIcon});
-           marker.addTo(this.map);
+           marker.bindPopup('<b> latitude='+this.spaces[i][1]+ '<br>'+'Longitude='+ this.spaces[i][0]+'</b>').addTo(this.map);
 
           }
           console.log(this.maps);
@@ -109,21 +112,36 @@ smallIcon = new L.Icon({
 
     }
 
+
+    listAreas(){
+
+
+      this.userService.listAreaperUser(this.subuser.cin).subscribe(
+        data=>  {
+          this.ar=data;
+          console.log(data);
+         for(let i=0;i<this.ar.length;i++)
+          {
+           console.log("GeoJson ==>",this.ar[i])
+           let a = JSON.parse(this.ar[i]);
+           console.log("aa"+a);
+            const geojson = new L.GeoJSON(a).addTo(this.map).bindPopup('<b>'+this.ar[i]+'</b>');
+          }
+               },
+        err=>{
+          console.log(err.error.message);
+            }
+      )
+
+
+    }
+
     createMap(){
       const tunisie = {
         lat: 33.892166,
         lng: 9.561555499999997,
       };
 
-      const BWS = {
-        lat: 36.81897,
-        lng: 10.16579,
-      };
-
-      const LaMarsa = {
-        lat: 36.8790882,
-        lng: 10.327678,
-      };
       for(let j=0;j<this.maps.length;j++)
       {
         const f = {
@@ -134,10 +152,6 @@ smallIcon = new L.Icon({
 
       }
 
-      const sfax = {
-        lat: 34.7231273,
-        lng: 10.3358789,
-      };
 
       const zoomlevel = 6;
     this.map = L.map('map',{
@@ -145,20 +159,12 @@ smallIcon = new L.Icon({
       zoom: zoomlevel
     });
     const mainlayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      minZoom: 6,
+      minZoom: 4,
       maxZoom: 17,
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright%22%3EOpenStreetMap</a> contributors'
     });
 
-    this.map.pm.addControls({
-      position: 'topleft',
-      drawMarker: true,
-      drawCircle: true,
-      drawPolygon: true,
-      drawPolyline: true,
-      drawCircleMarker:true,
-      drawRectangle:true,
-    });
+
     mainlayer.addTo(this.map);
 
 
