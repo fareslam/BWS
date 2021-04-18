@@ -1,5 +1,12 @@
 
-
+<div id="scrollview-demo">
+  <dx-scroll-view #scrollView
+        id="scrollview"
+        [scrollByContent]="true"
+        [scrollByThumb]="true"
+        [showScrollbar]="true"
+        [bounceEnabled]="false"
+        reachBottomText="Updating...">
 <h4 class="display-4"  style="text-align: center;">Devices Management</h4>
 <hr>
 
@@ -16,7 +23,8 @@
 
   <ul>
       <li *ngFor="let device of dataSource">
-      <img src="../../../assets/co2.jpg" ><br/>
+
+      <img src={{device.imageurl}} ><br/>
           <i>{{device.reference}}</i><br/>
          <div style="display:inline">
           <dx-button
@@ -85,6 +93,92 @@
 
   <dx-popup
       [width]="500"
+      [height]="700"
+      [showTitle]="true"
+      title="Adding a device"
+      [dragEnabled]="false"
+      [closeOnOutsideClick]="true"
+      [(visible)]="popupAdd">
+
+
+        <div class="form-login">
+
+<form>
+       <b> Reference:  </b>  <dx-text-box dataField="reference" [(value)]="reference" required="true" >
+
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+
+       </dx-text-box><br>
+
+       <b> Name:  </b>     <dx-text-box [(value)]="name" dataField="name" required="true">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+       </dx-text-box><br>
+
+       <b> Space:  </b>  <dx-select-box [dataSource]="spaces"    displayExpr="name"
+       [(value)]="idSpace"
+       valueExpr="idSpace">
+       <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dx-select-box><br>
+
+
+
+    <b> Constraint:  </b>  <dx-select-box [dataSource]="cons"    displayExpr="nameConstraint"
+    [(value)]="idConstraint"
+    valueExpr="idConstraint">
+    <dxi-validation-rule type="required"></dxi-validation-rule>
+ </dx-select-box>
+
+
+
+ <dx-file-uploader
+ #fileUploader
+ uploadUrl="https://js.devexpress.com/Demos/NetCore/FileUploader/Upload"
+ [multiple]="false"
+ accept="*"
+ [(value)]="img"
+ uploadMode="instantly"
+></dx-file-uploader>
+
+<div class="content">
+  <div *ngIf="img.length > 0">
+      <h4>Selected File:</h4>
+  </div>
+  <div *ngFor="let file of img">
+      <div class="selected-item">
+         <b></b>
+         <b>Name:</b> <span>{{file.name}}</span><br /> <b>Size:</b>
+          <span>{{file.size}}</span>bytes<br /> <b>Type:</b>
+          <span>{{file.type}}</span>
+
+      </div>
+  </div>
+</div>
+</form>
+
+   <br>
+   <br>
+     &nbsp;&nbsp;
+       <dx-button
+       icon="plus"
+       type="success"
+       text="Add"
+       (onClick)="add()"
+
+       id="log"
+       >
+     </dx-button>
+
+
+  </div>
+
+  </dx-popup>
+
+
+
+
+
+  <dx-popup
+      [width]="500"
       [height]="450"
       [showTitle]="true"
       title="Updating a device"
@@ -144,62 +238,7 @@
 
 
 
-  <dx-popup
-      [width]="500"
-      [height]="450"
-      [showTitle]="true"
-      title="Adding a device"
-      [dragEnabled]="false"
-      [closeOnOutsideClick]="true"
-      [(visible)]="popupAdd">
 
-
-        <div class="form-login">
-
-
-          <form >
-       <b> Reference:  </b>  <dx-text-box dataField="reference" [(value)]="reference" required="true" >
-
-        <dxi-validation-rule type="required"></dxi-validation-rule>
-
-       </dx-text-box><br>
-
-       <b> Name:  </b>     <dx-text-box [(value)]="name" dataField="name" required="true">
-        <dxi-validation-rule type="required"></dxi-validation-rule>
-       </dx-text-box><br>
-
-       <b> Space:  </b>  <dx-select-box [dataSource]="spaces"    displayExpr="name"
-       [(value)]="idSpace"
-       valueExpr="idSpace">
-       <dxi-validation-rule type="required"></dxi-validation-rule>
-    </dx-select-box><br>
-
-
-
-    <b> Constraint:  </b>  <dx-select-box [dataSource]="cons"    displayExpr="nameConstraint"
-    [(value)]="idConstraint"
-    valueExpr="idConstraint">
-    <dxi-validation-rule type="required"></dxi-validation-rule>
- </dx-select-box>
-
-
-   <br>
-   <br>
-     &nbsp;&nbsp;
-       <dx-button
-       icon="plus"
-       type="success"
-       text="Add"
-       (onClick)="add()"
-
-       id="log"
-       >
-     </dx-button>
-
-    </form>
-  </div>
-
-  </dx-popup>
 
 
 
@@ -208,7 +247,7 @@
 
   <dx-popup
       [width]="500"
-      [height]="200"
+      [height]="250"
       [showTitle]="true"
       title="Deleting a device"
       [dragEnabled]="false"
@@ -230,4 +269,6 @@
     </div>
   </dx-popup>
 
+
 </div>
+</dx-scroll-view>

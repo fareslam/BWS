@@ -1,11 +1,11 @@
-import { Component, OnInit,OnChanges } from '@angular/core';
+import { Component, OnInit,OnChanges, ViewChild } from '@angular/core';
 import { Device } from 'src/app/models/device';
 import { AdminServiceService } from 'src/app/services/admin-service.service';
 import notify from 'devextreme/ui/notify';
 import { Space } from 'src/app/models/space';
 import { ConstraintCo2 } from 'src/app/models/constraint-co2';
 import { Area } from 'src/app/models/area';
-
+import {DxFormComponent } from 'devextreme-angular';
 @Component({
   selector: 'app-devices',
   templateUrl: './devices.component.html',
@@ -13,14 +13,17 @@ import { Area } from 'src/app/models/area';
 })
 
 export class DevicesComponent implements OnInit{
+//  @ViewChild(DxFormComponent, { static: false }) form:DxFormComponent
 device:Device;
+img: any[] = [];
+dev:any={};;
 currentDevice: Device=new Device();
 popupVisible = false;
 popupUpdate = false;
 name:String;
 idSpace:Number;
 idConstraint:Number;
-
+imageurl:String;
 popupAdd = false;
 popupDelete = false;
 space:Space;
@@ -33,8 +36,14 @@ reference:String;
 
 password:string;
 username:string;
+buttonOptions: any = {
+  icon:"plus",
+  text: "Add",
+  type: "success",
+  useSubmitBehavior: true,
 
-form:any={};
+}
+forms:any={};
  cons: ConstraintCo2[];
  msg = '';
 constructor(private adminService: AdminServiceService) {
@@ -48,6 +57,9 @@ constructor(private adminService: AdminServiceService) {
 
     err=> {
       console.log(err.error.message);});
+
+      this.listSp();
+
 }
 
 ngOnInit(): void
@@ -202,16 +214,20 @@ save(device){
 
   add(){
 
-    this.form={
+
+    this.dev={
       "reference":this.reference,
       "name":this.name,
-      "idSpace":this.idSpace,
+      "imageurl": "../../../assets/"+this.img[0]["name"],
+     "idSpace":this.idSpace,
       "idConstraint":this.idConstraint
     }
 
+    if (this.dev.name==null){  notify("Error in name !", "warning", 1500);}
 
 
-    this.adminService.addDevice(this.form).subscribe(
+else {
+this.adminService.addDevice(this.dev).subscribe(
       data=>{console.log(data);
         notify("Device added successfully", "success", 1500);
 
@@ -231,11 +247,15 @@ save(device){
       },
         err=>{
         notify(err.error.message, "warning", 1500);
+        //  alert(err)
 
-        console.log(err.error.message)
       }
     )
 
+    }
 
   }
+
+s(){ notify("ok", "success", 1500);}
+
 }

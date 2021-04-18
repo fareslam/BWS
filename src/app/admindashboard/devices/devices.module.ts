@@ -5,17 +5,19 @@ import { DevicesRoutingModule } from './devices-routing.module';
 import { DevicesComponent } from './devices.component';
 import { DxButtonModule, DxDataGridModule, DxPopupModule, DxSelectBoxModule, DxTemplateModule } from 'devextreme-angular';
 import { DxLookupModule,  DxValidatorModule } from 'devextreme-angular';
-import {
+import {DxScrollViewModule,
 
-  DxTextAreaModule,  DxTextBoxModule,
+  DxTextAreaModule,  DxTextBoxModule,DxFileUploaderModule,
+
   DxFormModule,
+  DxAutocompleteModule,
  } from 'devextreme-angular';
 
 
 @NgModule({
   declarations: [DevicesComponent],
   imports: [
-    CommonModule,
+    DxScrollViewModule,CommonModule,DxAutocompleteModule,DxFileUploaderModule,
     DevicesRoutingModule, DxTextAreaModule,
     DxFormModule,DxValidatorModule,
     DxDataGridModule,DxLookupModule,

@@ -7,8 +7,8 @@ export class Device {
 
     reference:string;
     name:string;
-    longitude:number;
-    latitude:number;
+
+    imageurl:String;
     list_user_devices:UserDevice[];
     space:Space;
     idSpace:number;
