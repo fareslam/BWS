@@ -3,15 +3,15 @@ import { CommonModule } from '@angular/common';
 
 import { SpacesRoutingModule } from './spaces-routing.module';
 import { SpacesComponent } from './spaces.component';
-import { DxDataGridModule, DxSelectBoxModule } from 'devextreme-angular';
+import { DxDataGridModule,DxButtonModule, DxScrollViewModule,DxSelectBoxModule } from 'devextreme-angular';
 
 
 
 @NgModule({
   declarations: [SpacesComponent],
   imports: [
-    CommonModule,DxDataGridModule, DxSelectBoxModule ,
-    SpacesRoutingModule
+    CommonModule,DxDataGridModule, DxSelectBoxModule ,DxScrollViewModule,
+    SpacesRoutingModule,DxButtonModule
   ]
 })
 export class SpacesModule { }

@@ -158,7 +158,15 @@ this.popupUpdate = true;
 save(device){
 
   this.device=device;
-  this.adminService.updateDevice(this.device.reference,this.device).subscribe(
+
+  this.dev={
+    "reference":this.device.reference,
+    "name":this.device.name,
+    "imageurl": "../../../assets/"+this.img[0]["name"],
+   "idSpace":this.device.idSpace,
+    "idConstraint":this.device.idConstraint
+  }
+  this.adminService.updateDevice(this.device.reference,this.dev).subscribe(
     data=>{
 
       notify("Device updated successfully", "success", 1500);
@@ -243,11 +251,14 @@ this.adminService.addDevice(this.dev).subscribe(
           },
 
           err=> {
-            console.log(err.error.message);});
+            console.log(err.error.message);
+
+          });
       },
         err=>{
         notify(err.error.message, "warning", 1500);
-        //  alert(err)
+        notify(err.error, "warning", 1500);
+       //  alert(err)
 
       }
     )

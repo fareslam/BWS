@@ -1,5 +1,6 @@
 @import"../../../bootstrap.css";
 ::ng-deep #grid {
+
   height: 440px;
 }
 

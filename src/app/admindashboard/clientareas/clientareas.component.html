@@ -46,27 +46,33 @@ id="button"
 <br><br>
 
 
-
+<dx-button id="exportButton"
+    icon="exportpdf"
+    text="Export to PDF"
+    stylingMode="outlined"
+    type="danger"
+    (onClick)="exportGrid()">
+</dx-button>
 <dx-data-grid id="gridContainer"
 [showBorders]="true"
 [dataSource]="listca"
 [repaintChangesOnly]="true"
-
+(onExporting)="onExporting($event)"
 [rowAlternationEnabled]="true"
 keyExpr="ua_key">
 
 
 
+<dxo-export [enabled]="true"></dxo-export>
+<dxo-paging [pageSize]="5"></dxo-paging>
 
-
-
-<dxi-column dataField="ua_key.cinu" caption="CIN" [width]="150">
+<dxi-column dataField="ua_key.cinu" caption="CIN" [width]="400">
 
 </dxi-column>
 
 
 
-<dxi-column dataField="ua_key.idArea" caption="Area"   [width]="150">
+<dxi-column dataField="ua_key.idArea" caption="Area"   [width]="400">
 
 
 </dxi-column>

@@ -23,6 +23,13 @@ export class UserServiceService {
 
   }
 
+ updateSubUser(cinu:number,cin:number,signUpRequest:SignUpRequest):Observable<any>
+  {
+    return this.http.put(`${this.API_URL}/${cinu}/${cin}/SubUser/update`,signUpRequest);
+
+  }
+
+
   deleteSubUser(cinu:number):Observable<any>
   {
     return this.http.delete(`${this.API_URL}/SubUser/delete/${cinu}`);

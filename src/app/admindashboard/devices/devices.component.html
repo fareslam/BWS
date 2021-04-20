@@ -179,7 +179,7 @@
 
   <dx-popup
       [width]="500"
-      [height]="450"
+      [height]="550"
       [showTitle]="true"
       title="Updating a device"
       [dragEnabled]="false"
@@ -212,6 +212,17 @@
          <dxi-validation-rule type="required" message="Constraint is required"></dxi-validation-rule>
      </dx-validator>
  </dx-select-box>
+
+ <dx-file-uploader
+ #fileUploader
+ uploadUrl="https://js.devexpress.com/Demos/NetCore/FileUploader/Upload"
+ [multiple]="false"
+ accept="*"
+ [(value)]="img"
+ uploadMode="instantly"
+></dx-file-uploader>
+
+
           </form>
 
    <br>

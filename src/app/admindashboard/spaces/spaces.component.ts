@@ -1,14 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Space } from 'src/app/models/space';
 import { AdminServiceService } from 'src/app/services/admin-service.service';
 import notify from 'devextreme/ui/notify';
 import { Area } from 'src/app/models/area';
+import { exportDataGrid as exportDataGridToPdf } from 'devextreme/pdf_exporter';
+import { jsPDF } from 'jspdf';
+import {  DxDataGridComponent } from 'devextreme-angular';
+import 'jspdf-autotable';
+import { exportDataGrid } from 'devextreme/excel_exporter';
+import ExcelJS from 'exceljs';
+import saveAs from 'file-saver';
 @Component({
   selector: 'app-spaces',
   templateUrl: './spaces.component.html',
   styleUrls: ['./spaces.component.css']
 })
 export class SpacesComponent implements OnInit {
+  @ViewChild(DxDataGridComponent, { static: false }) dataGrid: DxDataGridComponent;
+
   dataSource: Space[] = [];
   areas: Area[] = [];
   xx: Area[] = [];
@@ -150,4 +159,79 @@ DeleteSpace(event)
 
   )
 }
+
+
+
+
+
+exportGrid1() {
+  const doc = new jsPDF();
+  exportDataGridToPdf({
+      jsPDFDocument: doc,
+      component: this.dataGrid.instance
+  }).then(() => {
+      doc.save('spaces.pdf');
+  })
+}
+
+onExporting1(e) {
+  const workbook = new ExcelJS.Workbook();
+  const worksheet = workbook.addWorksheet('spaces');
+
+  worksheet.columns = [
+    { width: 5 }, { width: 30 }, { width: 25 }, { width: 15 }, { width: 25 }, { width: 40 }
+  ];
+
+  exportDataGrid({
+    component: e.component,
+    worksheet: worksheet,
+    keepColumnWidths: false,
+    topLeftCell: { row: 2, column: 2 },
+    customizeCell: ({ gridCell, excelCell }) => {
+      if(gridCell.rowType === "data") {
+
+
+      }
+
+    }
+  }).then(() => {
+    workbook.xlsx.writeBuffer().then((buffer) => {
+      saveAs(new Blob([buffer], { type: "application/octet-stream" }), "spaces.xlsx");
+    });
+  });
+  e.cancel = true;
+}
+
+
+
+
+
+onExporting2(e) {
+  const workbook = new ExcelJS.Workbook();
+  const worksheet = workbook.addWorksheet('areas');
+
+  worksheet.columns = [
+    { width: 5 }, { width: 30 }, { width: 25 }, { width: 15 }, { width: 25 }, { width: 40 }
+  ];
+
+  exportDataGrid({
+    component: e.component,
+    worksheet: worksheet,
+    keepColumnWidths: false,
+    topLeftCell: { row: 2, column: 2 },
+    customizeCell: ({ gridCell, excelCell }) => {
+      if(gridCell.rowType === "data") {
+
+
+      }
+
+    }
+  }).then(() => {
+    workbook.xlsx.writeBuffer().then((buffer) => {
+      saveAs(new Blob([buffer], { type: "application/octet-stream" }), "areas.xlsx");
+    });
+  });
+  e.cancel = true;
+}
+
 }

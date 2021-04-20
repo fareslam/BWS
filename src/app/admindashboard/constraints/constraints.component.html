@@ -1,5 +1,12 @@
 <h4 class="display-4"  style="text-align: center;">Constraints Management</h4>
 <hr>
+<dx-button id="exportButton"
+    icon="exportpdf"
+    text="Export to PDF"
+    stylingMode="outlined"
+    type="danger"
+    (onClick)="exportGrid1($event)">
+</dx-button>
 
 <dx-data-grid
     id="grid"
@@ -10,6 +17,7 @@
     (onRowInserted)="addConstraint($event)"
     (onRowUpdated)="updateConstraint($event)"
     (onRowRemoved)="removeConstraint($event)"
+    (onExporting)="onExporting1($event)"
 
   keyExpr="idConstraint">
 
@@ -24,7 +32,11 @@
         >
 
     </dxo-editing>
-
+    <dxo-paging [pageSize]="5"></dxo-paging>
+    <dxo-export [enabled]="true"></dxo-export>
+    <dxo-search-panel
+    [visible]="true"
+    ></dxo-search-panel>
 
 
     <dxi-column dataField="nameConstraint" >

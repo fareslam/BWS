@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { EmployeesRoutingModule } from './employees-routing.module';
 import { EmployeesComponent } from './employees.component';
-
+import {  DxButtonModule } from 'devextreme-angular';
 import { DxDataGridModule } from 'devextreme-angular';
 import { DxSelectBoxModule} from 'devextreme-angular';
 import { DxPopupModule} from 'devextreme-angular';
@@ -12,7 +12,7 @@ import { DxPopupModule} from 'devextreme-angular';
   declarations: [EmployeesComponent],
   imports: [
     CommonModule,
-    EmployeesRoutingModule,
+    EmployeesRoutingModule,DxButtonModule,
     DxDataGridModule,DxSelectBoxModule,DxPopupModule
   ]
 })
