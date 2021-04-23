@@ -22,7 +22,7 @@
 
 
   <ul>
-      <li *ngFor="let device of dataSource">
+      <li *ngFor="let device of dataSource;let x in tab;let j=index;" >
         <div class="card border-dark " style="max-width: 18rem;">
           <div class="card-header">       <b>REF:</b>
             <span>{{device.reference}}</span></div>
@@ -39,26 +39,29 @@
             <p>
               <b>Space :</b> <br>
 
-              <span style="font-weight: bolder;font-size: larger;">{{device.idSpace}} {{device.namex}}</span><br>
+              <span style="font-weight: bolder;font-size: larger;">{{tab[j].name}}</span><br>
+              <b>Longitude:</b><br> {{tab[j].long}}<br>
+              <b>Latitude :</b> {{tab[j].lat}}<br>
 
             </p>
             <hr>
             <p>
               <b>Constraint :</b> <br>
 
-              <span style="font-weight: bolder;">{{device.idConstraint}}</span><br>
-
+              <span style="font-weight: bolder;"> {{tab[j].nameConstraint}}</span><br>
+              <b>Min Value :</b> <br>{{tab[j].minValue}}<br>
+              <b>Max Value :</b> <br>{{tab[j].maxValue}}<br>
             </p>
             </div>
           </div>
           <div style="display:inline">
-       <dx-button
+      <!-- <dx-button
                 class="button-info"
                 [width]="33"
                 icon="search"
                 type="default"
                 (onClick)="showInfo(device)">
-           </dx-button>
+           </dx-button> !-->
 
             <dx-button
             class="button-info"

@@ -27,6 +27,11 @@ namex:String;
 idSpace:Number;
 idConstraint:Number;
 imageurl:String;
+ss:String[]=[];
+l:any={};
+
+tab:any=[];
+
 popupAdd = false;
 popupDelete = false;
 space:Space;
@@ -51,7 +56,6 @@ forms:any={};
  msg = '';
 constructor(private adminService: AdminServiceService) {
 
-
 }
 
 ngOnInit(): void
@@ -72,9 +76,44 @@ readData() {
 
       this.dataSource = data;
 
+for (let i=0;i<this.dataSource.length;i++)
+{
+
+  this.adminService.getConstraint(this.dataSource[i].idConstraint).subscribe(
+    data=>{this.constraint=data;
+            this.nameC=this.constraint.nameConstraint;
+            this.minv=this.constraint.min_value+" °C";
+            this.maxv=this.constraint.max_value+" °C";
+
+      },
+    err=>{console.log(err.error.message)}
+  )
+  this.adminService.getSpace(this.dataSource[i].idSpace).subscribe(
+    data=>{this.space=data;
+      this.namex=this.space.name;
+      this.lat=this.space.latitude;
+      this.long=this.space.longitude;
+
+      this.l={
+        "name":this.namex,
+        "nameConstraint":this.nameC,
+        "long":this.long,
+        "lat":this.lat,
+        "minValue":this.minv,
+        "maxValue":this.maxv
+      }
+    this.tab.push(this.l)
+      },
+    err=>{console.log(err.error.message)}
+  )
 
 
 
+
+
+
+}
+console.log(this.tab)
       console.log(data);
     },
 
@@ -99,6 +138,8 @@ readData() {
             this.cons = data;
 
             console.log(this.cons);
+
+
           },
 
           err=> {
@@ -134,6 +175,7 @@ this.popupVisible=true;
   this.adminService.getSpace(this.device.idSpace).subscribe(
     data=>{this.space=data;
             this.nameS=this.space.name+"\n\nLongitude="+this.space.longitude+"\n\n Latitude="+this.space.latitude;
+
       },
     err=>{console.log(err.error.message)}
   )
@@ -177,7 +219,7 @@ save(device){
 
       notify("Device updated successfully", "success", 1500);
       this.popupUpdate = false;
-      this.readData();
+      window.location.reload()
     },
     err=>{
       notify(err.error.message, "warning", 1500);
