@@ -8,8 +8,9 @@ import { jsPDF } from 'jspdf';
 import {  DxDataGridComponent } from 'devextreme-angular';
 import 'jspdf-autotable';
 import { exportDataGrid } from 'devextreme/excel_exporter';
-import ExcelJS from 'exceljs';
+import * as ExcelJS from 'exceljs/dist/exceljs.min.js';
 import saveAs from 'file-saver';
+import { Device } from 'src/app/models/device';
 @Component({
   selector: 'app-constraints',
   templateUrl: './constraints.component.html',
@@ -17,15 +18,52 @@ import saveAs from 'file-saver';
 })
 export class ConstraintsComponent implements OnInit {
   @ViewChild(DxDataGridComponent, { static: false }) dataGrid: DxDataGridComponent;
-  dataSource: ConstraintCo2[] = [];
+  dataSource= [];
   constraint:any={};
   msg = '';
+  idConstraint:number;
+  nameConstraint:any;
+  name:any;
+  reference:any;
+  item:any;
+
+  devices:Device[]=[];
   constructor(private adminService: AdminServiceService) { }
 
   ngOnInit(): void {
     this.readData();
+    this.listDevices();
   }
 
+
+
+
+  listDevices() {
+    this.adminService.listdevicesByIDCT().subscribe(
+      data => {
+
+        this.devices = data;
+
+              },err=>{console.log(err)})
+
+            }
+
+            getDisplayExpr(item) {
+              if(!item) {
+                  return "";
+              }
+
+              return item.nameConstraint ;
+          }
+
+
+          getDisplay(item) {
+            if(!item) {
+                return "";
+            }
+
+            return item.name ;
+        }
 
   readData() {
     this.adminService.listConstraints().subscribe(
@@ -43,7 +81,7 @@ export class ConstraintsComponent implements OnInit {
     );
   }
 
-
+save(){alert(this.reference+""+this.idConstraint);}
   addConstraint(event){
 let form:any={
   "nameConstraint":event.data.nameConstraint,
@@ -99,6 +137,33 @@ let form:any={
     )
     console.log(event)
   }
+
+
+
+  update(){
+
+
+
+    let dev:any={
+
+      "idConstraint":this.idConstraint
+    }
+    this.adminService.updateDeviceCT(this.reference,dev).subscribe(
+      data=>{
+
+        notify("Device updated successfully", "success", 1500);
+
+        this.listDevices()
+      },
+      err=>{
+        notify(err.error.message, "warning", 1500);
+
+      }
+    )
+
+
+  }
+
 
 
 

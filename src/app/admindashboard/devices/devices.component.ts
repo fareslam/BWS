@@ -14,13 +14,16 @@ import {DxFormComponent } from 'devextreme-angular';
 
 export class DevicesComponent implements OnInit{
 //  @ViewChild(DxFormComponent, { static: false }) form:DxFormComponent
-device:Device;
-img: any[] = [];
-dev:any={};;
-currentDevice: Device=new Device();
+device:any;
+//img: any[] = [];
+dev:any={}; long:any;lat:any;
+currentDevice: any;
 popupVisible = false;
 popupUpdate = false;
 name:String;
+minv:any;
+maxv:any;
+namex:String;
 idSpace:Number;
 idConstraint:Number;
 imageurl:String;
@@ -28,12 +31,12 @@ popupAdd = false;
 popupDelete = false;
 space:Space;
 constraint:ConstraintCo2;
-dataSource: Device[] = [];
+dataSource = [];
 spaces: Space[] = [];
-nameS:String;
-nameC:String;
+nameS:any;
+nameC:any;
 reference:String;
-
+nameConstraint:any;
 password:string;
 username:string;
 buttonOptions: any = {
@@ -47,26 +50,15 @@ forms:any={};
  cons: ConstraintCo2[];
  msg = '';
 constructor(private adminService: AdminServiceService) {
-  this.adminService.listdevices().subscribe(
-    data => {
 
-      this.currentDevice = data;
-
-      console.log(data);
-    },
-
-    err=> {
-      console.log(err.error.message);});
-
-      this.listSp();
 
 }
 
 ngOnInit(): void
 {
-
-
   this.readData();
+
+
 
 
 this.listSp();
@@ -80,11 +72,25 @@ readData() {
 
       this.dataSource = data;
 
+
+
+
       console.log(data);
     },
 
     err=> {
-      console.log(err.error.message);});}
+      console.log(err.error.message);});
+
+
+
+
+
+
+
+
+    }
+
+
 
       listConst() {
         this.adminService.listConstraints().subscribe(
@@ -123,7 +129,7 @@ readData() {
 
 showInfo(device) {
     this.device = device;
-    this.popupVisible = true;
+this.popupVisible=true;
 
   this.adminService.getSpace(this.device.idSpace).subscribe(
     data=>{this.space=data;
@@ -162,7 +168,7 @@ save(device){
   this.dev={
     "reference":this.device.reference,
     "name":this.device.name,
-    "imageurl": "../../../assets/"+this.img[0]["name"],
+   // "imageurl": "../../../assets/"+this.img[0]["name"],
    "idSpace":this.device.idSpace,
     "idConstraint":this.device.idConstraint
   }
@@ -226,9 +232,9 @@ save(device){
     this.dev={
       "reference":this.reference,
       "name":this.name,
-      "imageurl": "../../../assets/"+this.img[0]["name"],
-     "idSpace":this.idSpace,
-      "idConstraint":this.idConstraint
+      //"imageurl": "../../../assets/"+this.img[0]["name"],
+     "idSpace":this.idSpace
+      //"idConstraint":this.idConstraint
     }
 
     if (this.dev.name==null){  notify("Error in name !", "warning", 1500);}

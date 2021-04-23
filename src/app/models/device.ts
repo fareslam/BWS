@@ -8,7 +8,7 @@ export class Device {
     reference:string;
     name:string;
 
-    imageurl:String;
+
     list_user_devices:UserDevice[];
     space:Space;
     idSpace:number;

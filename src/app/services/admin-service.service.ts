@@ -33,7 +33,7 @@ deleteDevice(ref:string):Observable<any>{
   return this.http.delete(`${this.API_URL}/device/delete/${ref}`,{ responseType: 'text' });
 }
 
-addDevice(d:Device):Observable<any>{
+addDevice(d:any):Observable<any>{
   return this.http.post(`${this.API_URL}/device/add`,d);
 
 }
@@ -42,8 +42,17 @@ updateDevice(reference:string,d:Device):Observable<any>{
   return this.http.put(`${this.API_URL}/device/update/${reference}`,d);
 }
 
+updateDeviceCT(reference:string,d:Device):Observable<any>{
+  return this.http.put(`${this.API_URL}/device/ct/update/${reference}`,d);
+}
+
+
 listdevices():Observable<any>
  {return this.http.get(`${this.API_URL}/device/all`);}
+
+
+listdevicesByIDCT():Observable<any>
+{return this.http.get(`${this.API_URL}/device/ct/all`);}
 
 getDeviceByRef(ref:string):Observable<any>
 {return this.http.get(`${this.API_URL}/device/${ref}`);}

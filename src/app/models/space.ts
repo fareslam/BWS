@@ -3,7 +3,7 @@ import { Device } from "./device";
 import { SubUserSpace } from "./sub-user-space";
 
 export class Space {
-    idspace:number;
+    idSpace:number;
     longitude:number;
     latitude:number;
     name:String;

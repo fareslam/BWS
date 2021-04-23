@@ -14,6 +14,7 @@
 ::ng-deep #container ul li img{
   width: 100px;
 }
+b{color:rgb(18, 50, 146)}
 ::ng-deep .button-info {
   margin: 10px;
 }

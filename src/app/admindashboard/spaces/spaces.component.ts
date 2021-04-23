@@ -8,7 +8,7 @@ import { jsPDF } from 'jspdf';
 import {  DxDataGridComponent } from 'devextreme-angular';
 import 'jspdf-autotable';
 import { exportDataGrid } from 'devextreme/excel_exporter';
-import ExcelJS from 'exceljs';
+import * as ExcelJS from 'exceljs/dist/exceljs.min.js';
 import saveAs from 'file-saver';
 @Component({
   selector: 'app-spaces',

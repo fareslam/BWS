@@ -37,6 +37,8 @@ children: [
 
 
   { path: 'spaces', loadChildren: () => import('./admindashboard/spaces/spaces.module').then(m => m.SpacesModule) },
+  { path: 'realtime', loadChildren: () => import('./admindashboard/realtime/realtime.module').then(m => m.RealtimeModule) },
+
   { path: 'areas', loadChildren: () => import('./admindashboard/areas/areas.module').then(m => m.AreasModule) },
   { path: 'clientareas', loadChildren: () => import('./admindashboard/clientareas/clientareas.module').then(m => m.ClientareasModule) }
 ,
@@ -45,6 +47,7 @@ children: [
   { path: 'clientdevices', loadChildren: () => import('./admindashboard/client-devices/client-devices.module').then(m => m.ClientDevicesModule) }
 ]
 }
+
 
 
 
