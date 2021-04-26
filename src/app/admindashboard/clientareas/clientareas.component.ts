@@ -75,7 +75,22 @@ export class ClientareasComponent implements OnInit {
       );
     }
 
+    removeClientArea(event){
 
+      this.adminService.deleteUserAreas(event.data.ua_key.cinu,event.data.ua_key.idArea).subscribe(
+        data=>{this.msg=data;
+          console.log(event.data)
+          this.listUsersAreas()
+          notify("Area Removed successfully from User", "success", 1500);
+        }
+
+       ,
+        err=>{
+          notify(err.error.message, "warning", 1500);
+
+        }
+      )
+    }
 
     listAreas() {
       this.adminService.listAreas().subscribe(

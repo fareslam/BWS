@@ -90,7 +90,22 @@ export class ClientDevicesComponent implements OnInit {
       );
     }
 
+    removeUserDevice(event){
 
+      this.adminService.deleteUserDevices(event.data.udk.cinu,event.data.udk.reference).subscribe(
+        data=>{this.msg=data;
+          console.log(event.data)
+          this.listUsersDevice();
+          notify("Device Removed successfully from User", "success", 1500);
+        }
+
+       ,
+        err=>{
+          notify(err.error.message, "warning", 1500);
+
+        }
+      )
+    }
 
     listDevices() {
       this.adminService.listdevices().subscribe(

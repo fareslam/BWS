@@ -56,12 +56,19 @@ id="button"
 <dx-data-grid id="gridContainer"
 [showBorders]="true"
 [dataSource]="listca"
-[repaintChangesOnly]="true"
+(onRowRemoved)="removeClientArea($event)"
 (onExporting)="onExporting($event)"
 [rowAlternationEnabled]="true"
 keyExpr="ua_key">
 
+<dxo-editing
+mode="popup"
+[useIcons]="true"
+[allowAdding]="true"
 
+[allowDeleting]="true"
+
+></dxo-editing>
 
 <dxo-export [enabled]="true"></dxo-export>
 <dxo-paging [pageSize]="5"></dxo-paging>
@@ -80,6 +87,13 @@ keyExpr="ua_key">
 
 
 
+
+<dxi-column type="buttons" [width]="110" caption="Actions">
+
+
+  <dxi-button name="delete"></dxi-button>
+
+  </dxi-column>
 
 
 

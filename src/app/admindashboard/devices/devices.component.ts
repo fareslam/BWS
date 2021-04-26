@@ -103,6 +103,7 @@ for (let i=0;i<this.dataSource.length;i++)
         "maxValue":this.maxv
       }
     this.tab.push(this.l)
+
       },
     err=>{console.log(err.error.message)}
   )
@@ -113,8 +114,9 @@ for (let i=0;i<this.dataSource.length;i++)
 
 
 }
-console.log(this.tab)
+
       console.log(data);
+      console.log("tab"+this.tab)
     },
 
     err=> {
@@ -288,6 +290,7 @@ this.adminService.addDevice(this.dev).subscribe(
         notify("Device added successfully", "success", 1500);
 
 
+        window.location.reload()
         this.popupAdd = false;
 
         this.adminService.listdevices().subscribe(

@@ -1,1 +1,81 @@
-<p>rapport works!</p>
+
+<h4 class="display-4" style="text-align: center;">Select the modules that will build your report</h4>
+<hr>
+<dx-form
+        id="form"
+        [formData]="form">
+
+        <dxi-item
+        dataField="date"
+        editorType="dxDateBox"
+        [editorOptions]="{
+            invalidDateMessage: 'The date must have the following format: MM/dd/yyyy' }">
+        <dxo-label
+            text="Choose the right date for your report ">
+        </dxo-label>
+        <dxi-validation-rule
+            type="required"
+            message="Date is required">
+        </dxi-validation-rule>
+
+    </dxi-item>
+    &nbsp;&nbsp;
+    <dxi-item
+    itemType="simple"
+    dataField="alert"
+    editorType="dxCheckBox"
+    [editorOptions]="{
+        text: 'Alert',
+        value: false
+    }">
+    <dxo-label
+        [visible]="false">
+    </dxo-label>
+
+</dxi-item>
+&nbsp;&nbsp;
+<dxi-item
+itemType="simple"
+dataField="ct"
+editorType="dxCheckBox"
+[editorOptions]="{
+    text: 'Constraints',
+    value: true
+}">
+<dxo-label
+    [visible]="false">
+</dxo-label>
+
+</dxi-item>
+&nbsp;&nbsp;
+<dxi-item
+itemType="simple"
+dataField="rt"
+editorType="dxCheckBox"
+[editorOptions]="{
+    text: 'Real-time',
+    value: true
+}">
+<dxo-label
+    [visible]="false">
+</dxo-label>
+
+</dxi-item>
+
+<dxi-item dataField="Choose the type of the file"
+editorType="dxSelectBox"
+[editorOptions]="{ dataSource: file }">
+<dxi-validation-rule
+    type="required"
+    message="Type of file is required">
+</dxi-validation-rule>
+</dxi-item>
+
+<dxi-item
+            itemType="button"
+            horizontalAlignment="right"
+            [buttonOptions]="buttonOptions">
+        </dxi-item>
+
+
+</dx-form>

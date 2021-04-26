@@ -84,6 +84,10 @@ listUserDevices():Observable<any>
 {return this.http.get(`${this.API_URL}/userDevices/all`);}
 
 
+deleteUserDevices(cinu:Number,reference:String):Observable<any>{
+  return this.http.delete(`${this.API_URL}/userDevices/delete/${cinu}/${reference}`,{ responseType: 'text' });}
+
+
 /************* CONSTRAINT CO2 MANGMENT ****** */
 
 addConstraint(c:ConstraintCo2):Observable<any>
@@ -138,6 +142,9 @@ affectUserArea(ca:ClientArea):Observable<any>
 
 listUserAreas():Observable<any>
 {return this.http.get(`${this.API_URL}/clientArea/all`);}
+
+deleteUserAreas(cinu:Number,idArea:Number):Observable<any>{
+  return this.http.delete(`${this.API_URL}/clientArea/delete/${cinu}/${idArea}`,{ responseType: 'text' });}
 
 
 }

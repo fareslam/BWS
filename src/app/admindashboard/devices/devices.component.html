@@ -36,22 +36,31 @@
                 <span>{{device.name}}</span>
             </p>
             <hr>
+            <div *ngIf="device.idSpace != null">
             <p>
               <b>Space :</b> <br>
 
               <span style="font-weight: bolder;font-size: larger;">{{tab[j].name}}</span><br>
-              <b>Longitude:</b><br> {{tab[j].long}}<br>
+              <b>Longitude:</b>{{tab[j].long}}<br>
               <b>Latitude :</b> {{tab[j].lat}}<br>
 
-            </p>
+            </p>           </div>
             <hr>
-            <p>
+            <div *ngIf="device.idConstraint != null">  <p>
               <b>Constraint :</b> <br>
 
               <span style="font-weight: bolder;"> {{tab[j].nameConstraint}}</span><br>
               <b>Min Value :</b> <br>{{tab[j].minValue}}<br>
               <b>Max Value :</b> <br>{{tab[j].maxValue}}<br>
-            </p>
+            </p></div>
+
+            <div *ngIf="device.idConstraint == null || device.idConstraint=='' ">  <p>
+              <b>Constraint :</b> <br>
+
+              <span style="font-weight: bolder;color:red"> --------</span><br>
+              <b >Min Value :</b> <br> <span style="font-weight: bolder;color:red">------</span><br>
+              <b>Max Value :</b> <br><span style="font-weight: bolder;color:red">------- </span><br>
+            </p></div>
             </div>
           </div>
           <div style="display:inline">

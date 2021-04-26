@@ -11,7 +11,7 @@
 <dx-data-grid
     id="grid"
     [dataSource]="dataSource"
-    [repaintChangesOnly]="true"
+
     [rowAlternationEnabled]="true"
     [showBorders]="true"
     (onRowInserted)="addConstraint($event)"
@@ -21,13 +21,16 @@
 
   keyExpr="idConstraint">
 
-    <dxo-scrolling mode="virtual"></dxo-scrolling>
+
     <dxo-editing
         mode="popup"
         [useIcons]="true"
-        [allowAdding]="true"
-        [allowUpdating]="true"
+
         [allowDeleting]="true"
+
+        [allowAdding]="true"
+
+        [allowUpdating]="true"
 
         >
 

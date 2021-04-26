@@ -47,18 +47,35 @@ id="button"
 </dx-button>
 
 <br><br>
-
+<dx-button id="exportButton"
+    icon="exportpdf"
+    text="Export to PDF"
+    stylingMode="outlined"
+    type="danger"
+    (onClick)="exportGrid()">
+</dx-button>
 <dx-data-grid id="gridContainer"
 [showBorders]="true"
 [dataSource]="listud"
-[repaintChangesOnly]="true"
+(onRowRemoved)="removeSubUserSpace($event)"
+(onExporting)="onExporting($event)"
+[rowAlternationEnabled]="true"
 
 [rowAlternationEnabled]="true"
 keyExpr="sus_key">
 
 
 
+<dxo-editing
+mode="popup"
+[useIcons]="true"
 
+[allowDeleting]="true"
+
+></dxo-editing>
+
+<dxo-export [enabled]="true"></dxo-export>
+<dxo-paging [pageSize]="5"></dxo-paging>
 
 
 <dxi-column dataField="sus_key.cin" caption="CIN" [width]="150">
@@ -73,6 +90,13 @@ keyExpr="sus_key">
 </dxi-column>
 
 
+
+<dxi-column type="buttons" [width]="110" caption="Actions">
+
+
+  <dxi-button name="delete"></dxi-button>
+
+  </dxi-column>
 
 
 

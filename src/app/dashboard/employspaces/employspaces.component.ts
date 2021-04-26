@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Device } from 'src/app/models/device';
 import { Space } from 'src/app/models/space';
 import { UserServiceService } from '../../services/user-service.service';
@@ -6,12 +6,21 @@ import { UserServiceService } from '../../services/user-service.service';
 import ArrayStore from "devextreme/data/array_store";
 import notify from 'devextreme/ui/notify';
 import { SubUser } from 'src/app/models/sub-user';
+import {  DxDataGridComponent } from 'devextreme-angular';
+
+import { exportDataGrid as exportDataGridToPdf } from 'devextreme/pdf_exporter';
+import { jsPDF } from 'jspdf';
+import 'jspdf-autotable';
+import { exportDataGrid } from 'devextreme/excel_exporter';
+import * as ExcelJS from 'exceljs/dist/exceljs.min.js';
+import saveAs from 'file-saver';
 @Component({
   selector: 'app-employspaces',
   templateUrl: './employspaces.component.html',
   styleUrls: ['./employspaces.component.css']
 })
 export class EmployspacesComponent implements OnInit {
+  @ViewChild(DxDataGridComponent, { static: false }) dataGrid: DxDataGridComponent;
   dataSource = [];
   listud =[];
   msg = '';
@@ -127,5 +136,64 @@ save(){
 
 }
 
+
+removeSubUserSpace(event){
+
+  this.userService.removeSubUserSpace(this.subuser.cin,event.data.sus_key.cin,event.data.sus_key.idSpace).subscribe(
+    data=>{this.msg=data;
+      console.log(event.data)
+
+      notify("Space Removed successfully from SubUser", "success", 1500);
+      this.lisSubUserSpaces();
+    }
+
+   ,
+    err=>{
+      notify(err.error.message, "warning", 1500);
+
+    }
+  )
+}
+
+exportGrid() {
+  const doc = new jsPDF();
+  exportDataGridToPdf({
+      jsPDFDocument: doc,
+      component: this.dataGrid.instance
+  }).then(() => {
+      doc.save('SubUser_Spaces.pdf');
+  })
+}
+
+onExporting(e) {
+  const workbook = new ExcelJS.Workbook();
+  const worksheet = workbook.addWorksheet('SubUser_Spaces');
+
+  worksheet.columns = [
+    { width: 5 }, { width: 30 }, { width: 25 }, { width: 15 }, { width: 25 }, { width: 40 }
+  ];
+
+  exportDataGrid({
+    component: e.component,
+    worksheet: worksheet,
+    keepColumnWidths: false,
+    topLeftCell: { row: 2, column: 2 },
+    customizeCell: ({ gridCell, excelCell }) => {
+      if(gridCell.rowType === "data") {
+        if(gridCell.column.dataField === 'tel') {
+          excelCell.font = { color: { argb: 'FF0000FF' }, underline: true };
+          excelCell.alignment = { horizontal: 'left' };
+        }
+
+      }
+
+    }
+  }).then(() => {
+    workbook.xlsx.writeBuffer().then((buffer) => {
+      saveAs(new Blob([buffer], { type: "application/octet-stream" }), "SubUser_Spaces.xlsx");
+    });
+  });
+  e.cancel = true;
+}
 
 }

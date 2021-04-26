@@ -66,4 +66,7 @@ listAreaperUser(cinu:Number):Observable<any>
 SCNDlistUserSpacesperDevice(cinu:Number):Observable<any>
 {return this.http.get(`${this.API_URL}/SpacesPerUserDevice2/${cinu}`);}
 
+removeSubUserSpace(cinu:Number,cin:Number,idSpace:Number):Observable<any>
+{return this.http.delete(`${this.API_URL}/SubUserSpace/delete/${cinu}/${cin}/${idSpace}`,{ responseType: 'text' });}
+
 }
