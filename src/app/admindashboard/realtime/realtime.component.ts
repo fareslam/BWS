@@ -127,10 +127,14 @@ getChart(ad:AdminServiceService){
 
             var data = [],
             time = (new Date()).getTime(),i;
-
+            let tab:any=[];
+            tab=ad.getRTValues("re2");
               for (i = -999; i <= 0; i += 1)
                 { console.log(i)
-                  data.push(  [ time + i * 1000  ,   Math.round(Math.random() * 12)  ] );
+
+
+
+                  data.push(  [ time + i*4 * 40000  ,  tab[i]  ] );
                 }
               return data;
     }
