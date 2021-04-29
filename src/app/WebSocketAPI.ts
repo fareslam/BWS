@@ -1,19 +1,17 @@
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
-import { AppComponent } from './app.component';
+import { RealtimeComponent } from './admindashboard/realtime/realtime.component';
 
 export class WebSocketAPI {
- /* webSocketEndPoint: string = 'http://localhost:9191/ws';
+webSocketEndPoint: string = 'http://localhost:9191/ws';
     //WS:Register a STOMP over WebSocket endpoint at the given mapping path.
-    i:number=9635704;
-    r:String="dev";
-
-
+    i:Number;
+    r:String;
     topic: string = "/topic/greetings";  //Lien destinataire
     stompClient: any;
-    appComponent: AppComponent;
-    constructor(appComponent: AppComponent){
-        this.appComponent = appComponent;
+    rtComponent: RealtimeComponent;
+    constructor(){
+
     }
     _connect() {
         console.log("Initialize WebSocket Connection");
@@ -22,19 +20,17 @@ export class WebSocketAPI {
         const _this = this;
         _this.stompClient.connect({}, function (frame) {
             _this.stompClient.subscribe(_this.topic, function (sdkEvent) {
-                _this.onMessageReceived(sdkEvent);
+                _this.onMessageReceived();
             });
             //_this.stompClient.reconnect_delay = 2000;
         }, this.errorCallBack);
     };
-
     _disconnect() {
         if (this.stompClient !== null) {
             this.stompClient.disconnect();
         }
         console.log("Disconnected");
     }
-
     // on error, schedule a reconnection attempt
     errorCallBack(error) {
         console.log("errorCallBack -> " + error)
@@ -42,15 +38,12 @@ export class WebSocketAPI {
             this._connect();
         }, 5000);
     }
-
-
-    _send(message) {
+    _send() {
         console.log("calling logout api via web socket");
-        this.stompClient.send("/topic/hello/"+`${this.i}`+"/"+`${this.r}`, {}, JSON.stringify(message));
+        this.stompClient.send("/topic/hello/"+`${this.i}`+"/"+`${this.r}`, {});
     }
+    onMessageReceived() {
+        console.log("Message Recieved from Server :: " );
 
-    onMessageReceived(message) {
-        console.log("Message Recieved from Server :: " + message);
-        this.appComponent.handleMessage(JSON.stringify(message.body));
-    }*/
+    }
 }

@@ -9,27 +9,12 @@ import { WebSocketAPI } from './WebSocketAPI';
 export class AppComponent {
   title = 'PFE_BWS';
 
- /* webSocketAPI: WebSocketAPI;
+  webSocketAPI: WebSocketAPI;
   greeting: any;
-  name: string;*/
+  name: string;
+  x:any;
   ngOnInit() {
-  /*  this.webSocketAPI = new WebSocketAPI(new AppComponent());*/
-  }
 
- /* connect(){
-    this.webSocketAPI._connect();
-  }
+}
 
-  disconnect(){
-    this.webSocketAPI._disconnect();
-  }
-
-  sendMessage(){
-    this.webSocketAPI._send(this.name);
-  }
-
-  handleMessage(message){
-    this.greeting = message;
-    alert (this.greeting)
-  }*/
 }

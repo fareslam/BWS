@@ -10,6 +10,7 @@ declare var require: any;
 })
 export class RealTimeComponent implements OnInit {
 
+  listdevices:any=[];
   public options: any = {
     Chart: {
       type: 'area',

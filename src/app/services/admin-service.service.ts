@@ -147,4 +147,8 @@ deleteUserAreas(cinu:Number,idArea:Number):Observable<any>{
   return this.http.delete(`${this.API_URL}/clientArea/delete/${cinu}/${idArea}`,{ responseType: 'text' });}
 
 
+
+  //**Real Time managment */
+  getRTValues(reference:String):Observable<any>
+{return this.http.get(`${this.API_URL}/rt/${reference}`); }
 }
