@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
 import * as Highcharts from "highcharts/highstock";
+
 import { StockChart } from 'angular-highcharts';
+
 import { WebSocketAPI } from 'src/app/WebSocketAPI';
 
 import { AdminServiceService } from '../../services/admin-service.service';
 import notify from 'devextreme/ui/notify';
+import { Device } from 'src/app/models/device';
 @Component({
   selector: 'app-realtime',
   templateUrl: './realtime.component.html',
@@ -24,9 +27,11 @@ export class RealtimeComponent implements OnInit {
   stock: StockChart;
 v:any;
 listValues:any=[];
-
-
+devices:Device[] = [];
+reference:String;
+ OK=true;
 Highcharts: typeof Highcharts = Highcharts;
+
 
 
   constructor(private adminService: AdminServiceService) { }
@@ -42,38 +47,37 @@ Highcharts: typeof Highcharts = Highcharts;
 
 
     this.webSocketAPI = new WebSocketAPI();
-      this.webSocketAPI.r="ref2";
-      this.webSocketAPI.i=11110000;
 
-    this.getChart(this.adminService);
-this.connect();
-this.sendMessage();
-this.valuesRT();
+      this.webSocketAPI.i=11110000;
+      this.listDevices();
+      this.webSocketAPI.r=this.reference;
+      this.webSocketAPI._connect();
+
+    this.getChart(this.adminService,  this.webSocketAPI.r);
+
+    this.valuesRT();
 
   }
 
-getChart(ad:AdminServiceService){
+getChart(ad:AdminServiceService,ch:any){
 
+
+console.log("🚀 ~ file:ch", ch)
 
 
   this.stock = new StockChart({
+
     chart: {
       events: {
           load: function () {
 
             let tab:any=[];
-
-              // set up the updating of the chart each second
               var series = this.series[0];
-
               setInterval(function () {
-
-                let n:Number;
-
                   var x =(new Date()).getTime(); // current time
-                var  y = Math.round(Math.random() * 100);
-                ad.getRTValues("ref2").subscribe(
+                ad.getRTValues(ch).subscribe(
                   data=>{
+                console.log("🚀 ~ file:ch", ch)
                     tab=data;
 
                     series.addPoint([x, tab[tab.length-1]], true, true);
@@ -85,6 +89,7 @@ getChart(ad:AdminServiceService){
 
               }, 1000);
           }
+
       }
   },
 
@@ -110,7 +115,7 @@ getChart(ad:AdminServiceService){
   },
 
   title: {
-      text: 'Live random data'
+      text: 'Live CO2 values'
   },
 
   exporting: {
@@ -120,7 +125,7 @@ getChart(ad:AdminServiceService){
 
   series: [  {
     type:undefined,
-    name: 'Random data',
+    name: 'CO2 Value',
     data: (function ()
 
     {
@@ -128,13 +133,14 @@ getChart(ad:AdminServiceService){
             var data = [],
             time = (new Date()).getTime(),i;
             let tab:any=[];
-            tab=ad.getRTValues("re2");
+            tab=ad.getRTValues(ch);
+            console.log("🚀 ~ file: realtime.component.ts ~ line 152 ~ RealtimeComponent ~ getChart ~ ch", ch)
               for (i = -999; i <= 0; i += 1)
-                { console.log(i)
+                { //console.log(i)
 
 
 
-                  data.push(  [ time + i*4 * 40000  ,  tab[i]  ] );
+                  data.push(  [ time + i*4 * 10000  ,  tab[i]  ] );
                 }
               return data;
     }
@@ -147,13 +153,14 @@ getChart(ad:AdminServiceService){
 
 }
 
+
 );
 
 }
 
 valuesRT(){
 
-  this.adminService.getRTValues("ref2").subscribe(
+  this.adminService.getRTValues(this.reference).subscribe(
     data=>{
       this.listValues=data;
         this.v=this.listValues[0];
@@ -170,21 +177,30 @@ valuesRT(){
 
 
 
+  listDevices() {
+    this.adminService.listdevices().subscribe(
+      data => {
+
+        this.devices = data;
+
+        console.log(data);
+      },
+
+      err=> {
+        console.log(err);});}
 
 
 
-
-connect(){
-  this.webSocketAPI._connect();
-}
-
-disconnect(){
-  this.webSocketAPI._disconnect();
-}
-
-sendMessage(){
+xx(){
+  this.webSocketAPI.r=this.reference;
   this.webSocketAPI._send();
+  this.OK=false;
+this.getChart(this.adminService, this.webSocketAPI.r)
+
+
 }
+
+
 
 handleMessage(){
 
@@ -192,3 +208,4 @@ handleMessage(){
 }
 
 }
+

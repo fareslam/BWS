@@ -21,7 +21,6 @@ children: [
 { path: 'rapport', loadChildren: () => import('./dashboard/rapport/rapport.module').then(m => m.RapportModule) },
 { path: 'employspaces', loadChildren: () => import('./dashboard/employspaces/employspaces.module').then(m => m.EmployspacesModule) },
 
-{ path: 'history', loadChildren: () => import('./dashboard/history/history.module').then(m => m.HistoryModule) },
 { path: 'employees', loadChildren: () => import('./dashboard/employees/employees.module').then(m => m.EmployeesModule) }
 
 

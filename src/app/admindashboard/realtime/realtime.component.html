@@ -1,12 +1,31 @@
-<div style="display: inline-block;">
- <button (click)="connect()" class="btn btn-default" type="submit" >Connect      </button>
 
-  <button (click)="sendMessage()" class="btn btn-default" type="submit" >Send      </button>
-                  <button (click)="disconnect()" class="btn btn-default" type="submit" >Disconnect
 
-                 </button></div>
+
+                  <div class="dx-fieldset">
+                    <div class="dx-fieldset-header">Choose a device :</div>
+                    <div class="dx-field">
+                      <dx-lookup
+                      [dataSource]="devices"
+                      displayExpr="name"
+                      [(value)]="reference"
+                      valueExpr="reference">
+                      <dxo-drop-down-options [showTitle]="false"></dxo-drop-down-options>
+                  </dx-lookup>
+                    </div>
+                  </div>
+                  &nbsp;&nbsp;&nbsp;
+                  <dx-button
+                  icon="check"
+                  type="success"
+                  text="send"
+              (onClick)="xx()"
+                  id="button"
+                  >
+                  </dx-button>
+
+                  <br>
 <br>
 <br>
-<br>
 
-<div [chart]="stock"></div>
+
+<div  [hidden]="OK" [chart]="stock"></div>

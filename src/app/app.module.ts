@@ -79,7 +79,6 @@ import { DxSliderModule } from "devextreme-angular";
 import { MapModule } from './dashboard/map/map.module';
 import { RealTimeModule } from './dashboard/real-time/real-time.module';
 
-import { HistoryModule } from './dashboard/history/history.module';
 import { RapportModule } from './dashboard/rapport/rapport.module';
 import { EmployeesModule } from './dashboard/employees/employees.module';
 import { HomeModule } from './home/home.module';
@@ -159,7 +158,6 @@ import { authInterceptorProviders } from './JWT-header-HTTP/auth.interceptor';
     NgbModule,
     MapModule,
     RealTimeModule,
-    HistoryModule,
     RapportModule,
     EmployeesModule,
     HomeModule,
