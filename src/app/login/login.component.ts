@@ -23,8 +23,10 @@ export class LoginComponent implements OnInit {
   userdashboard =false;
   subuserdashboard =false;
   errorMessage = '';
-
+  suwrite =false;
+  suread =false;
   roles: string[] = [];
+
   constructor(private authService: AuthService, private tokenService: TokenStorageService,   private router: Router) { }
 
   ngOnInit(): void {
@@ -46,11 +48,15 @@ export class LoginComponent implements OnInit {
         this.roles = this.tokenService.getUser().roles;
         this.admindashboard= this.roles.includes('ROLE_ADMIN');
         this.userdashboard= this.roles.includes('ROLE_USER');
+        this.suread=this.roles.includes('ROLE_SUREAD');
+        this.suwrite=this.roles.includes('ROLE_SUWRITE');
         if ( this.admindashboard){
-           this.router.navigate(['/admindashboard/devices']);
+           this.router.navigate(['/admindashboard/card']);
           }
         if ( this.userdashboard){ this.router.navigate(['/dashboard/map']); }
-
+        if( (( this.suread) || (this.suwrite)) && (!(this.userdashboard))){
+          this.router.navigate(['/subuserdashboard/map']);
+         }
       },
       err => {
         this.errorMessage = err.error.message;

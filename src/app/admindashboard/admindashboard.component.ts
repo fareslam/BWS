@@ -32,7 +32,7 @@ export class AdmindashboardComponent implements OnInit {
         data => {
           this.admin=data;
           sessionStorage.setItem('admin', JSON.stringify(this.admin));
-
+         // console.log("roleeeee"+this.subuser.roles)
         },
 
         err => console.log(err));

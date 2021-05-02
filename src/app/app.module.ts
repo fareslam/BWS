@@ -87,6 +87,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FooterComponent } from './footer/footer.component';
 import { authInterceptorProviders } from './JWT-header-HTTP/auth.interceptor';
 
+import { SubuserdashboardComponent } from './subuserdashboard/subuserdashboard.component';
+
 
 @NgModule({
   declarations: [
@@ -94,7 +96,9 @@ import { authInterceptorProviders } from './JWT-header-HTTP/auth.interceptor';
     DashboardComponent,AdmindashboardComponent,
     LoginComponent,
     NavBarComponent,
-    FooterComponent
+    FooterComponent,
+
+    SubuserdashboardComponent
   ],
 //https://mdbootstrap.com/docs/angular/navigation/footer/
   imports: [

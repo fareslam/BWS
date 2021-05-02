@@ -3,7 +3,7 @@
     target="#logo"
     showEvent="dxhoverstart"
     hideEvent="dxhoverend"
-  >
+>
 <dx-toolbar
     [items]="toolbarContent"
     id="tool">
@@ -27,6 +27,8 @@
 
 
     <dx-list [height]="1000" class="list-group">
+      <dxi-item class="list-group-item list-group-item-action active"  ><a routerLink="card" class="disabled-link"><mat-icon>home</mat-icon> Home</a></dxi-item>
+
       <dxi-item class="list-group-item list-group-item-action active"  ><a routerLink="devices" class="disabled-link"><mat-icon>devices_other</mat-icon> Devices</a></dxi-item>
       <dxi-item class="list-group-item list-group-item-action active"  ><a routerLink="realtime" class="disabled-link"><mat-icon>donut_small</mat-icon> Real Time</a></dxi-item>
 
@@ -36,6 +38,7 @@
       <dxi-item class="list-group-item list-group-item-action active"  ><a routerLink="clientdevices" class="disabled-link"><mat-icon>devices_other</mat-icon> Client's Devices</a></dxi-item>
       <dxi-item class="list-group-item list-group-item-action active"  ><a routerLink="clientareas" class="disabled-link"><mat-icon>public</mat-icon> Client's Areas</a></dxi-item>
       <dxi-item class="list-group-item list-group-item-action active"  ><a routerLink="users" class="disabled-link"><mat-icon>assignment_ind</mat-icon> Clients</a></dxi-item>
+      <dxi-item class="list-group-item list-group-item-action active"  ><a routerLink="profile" class="disabled-link"><mat-icon>settings</mat-icon> Manage Profile</a></dxi-item>
 
        </dx-list>
 

@@ -1,0 +1,40 @@
+
+
+<div id="form-container"class="container">
+<br><br>
+ <div class="form-login">
+     <h1>Manage Profile</h1>
+     <br>
+<dx-form
+      id="form"
+      [formData]="form">
+
+  <dxi-item
+      dataField="username"
+      id="userName"
+      class="form-control input-sm chat-input"
+  >
+  </dxi-item>
+  <dxi-item
+      dataField="password"
+       id="Password"
+       class="form-control input-sm chat-input"
+       [editorOptions]="{ mode: 'password' }"
+  >
+  </dxi-item>
+
+</dx-form>
+<br>
+<br>
+&nbsp;&nbsp;
+  <dx-button
+  icon="edit"
+  type="success"
+  text="Update"
+  (onClick)="save()"
+
+  >
+</dx-button>
+
+
+<br>

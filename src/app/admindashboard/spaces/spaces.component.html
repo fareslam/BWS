@@ -94,7 +94,7 @@ keyExpr="idArea">
 [visible]="true"
 [highlightCaseSensitive]="true"
 ></dxo-search-panel>
-<dxo-editing mode="popup"   [useIcons]="true"    [allowDeleting]="true" ></dxo-editing>
+<dxo-editing mode="cell"   [useIcons]="true"   [allowUpdating]="true" [allowDeleting]="true" ></dxo-editing>
 
 
 <dxi-column dataField="idArea" caption="idArea">
@@ -110,11 +110,7 @@ keyExpr="idArea">
 
   <dxi-button name="delete"></dxi-button>
 
-  <dxi-button
-  hint="view"
-  icon="search"></dxi-button>
-  </dxi-column>
-
+</dxi-column>
 
 </dx-data-grid>
 

@@ -1,0 +1,16 @@
+
+
+@import url("//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css");
+@import url("//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js");
+@import url("//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css");
+.my-card
+{
+    position:absolute;
+    left:40%;
+    top:-20px;
+    border-radius:50%;
+}
+.wst{
+ padding: 110px;
+}
