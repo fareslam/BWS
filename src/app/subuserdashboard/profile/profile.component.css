@@ -1,44 +1,21 @@
-
-
-
-h1{
-    color: #073642;
-    text-align: center;
-    font-weight: bold;
-}
-.container {
-    padding: 110px;
+@import"../../../bootstrap.css";
+::ng-deep .first-group,
+::ng-deep .second-group {
+    padding: 20px;
 }
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #ffffff!important;
-    opacity: 1; /* Firefox */
-    font-size:18px!important;
+::ng-deep .second-group {
+    background-color: rgba(191, 191, 191, 0.15);
 }
+​
+::ng-deep .form-avatar ,img{
+    height: 128px;
+    width: 128px;
+    margin-right: 10px;
+    border: 1px solid #d2d3d5;
+    border-radius: 50%;
 
-#log{
-    background-color: #073642;
-    border-color: #073642;
-    color: white;
-}
-.form-login {
-    background-color: rgba(89, 134, 185, 0.432);
-    padding-top: 10px;
-    padding-bottom: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
-    border-radius: 15px;
-    border-color:#d2d2d2;
-    border-width: 5px;
-    color:white;
-    box-shadow:0 1px 0 #cfcfcf;
-}
-.form-control input-sm chat-input{
-    background:transparent!important;
-    color:white!important;
-    font-size: 18px!important;
-    width: 200px;
-}
-.form-control input-sm chat-input{
-    border-radius: 10px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
