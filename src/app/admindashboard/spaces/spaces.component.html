@@ -76,9 +76,15 @@ keyExpr="idSpace">
 
 <h4 class="display-4"  style="text-align: center;">Areas Management</h4>
 <hr>
+<dx-button id="exportButton"
+    icon="exportpdf"
+    text="Export to PDF"
+    stylingMode="outlined"
+    type="danger"
+    (onClick)="exportGrid2()">
+</dx-button>
 
-
-<dx-data-grid id="gridContainer"
+<dx-data-grid id="gridContainer" #aa
 [showBorders]="true"
 [dataSource]="xx"
 [rowAlternationEnabled]="true"

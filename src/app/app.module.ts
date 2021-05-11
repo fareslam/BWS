@@ -42,6 +42,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
+import {DatePipe} from '@angular/common';
 
 import { DxAutocompleteModule, DxCheckBoxModule, DxDrawerComponent, DxDrawerModule, DxListModule, DxNumberBoxModule, DxRadioGroupModule, DxToolbarModule, DxValidationSummaryModule } from 'devextreme-angular';
 
@@ -75,9 +76,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdmindashboardComponent } from './admindashboard/admindashboard.component';
 import { Service } from './services/app.service';
 
-import { DxSliderModule } from "devextreme-angular";
+import { DxSliderModule, DxPopupModule, DxTemplateModule  } from "devextreme-angular";
 import { MapModule } from './dashboard/map/map.module';
-import { RealTimeModule } from './dashboard/real-time/real-time.module';
 
 import { RapportModule } from './dashboard/rapport/rapport.module';
 import { EmployeesModule } from './dashboard/employees/employees.module';
@@ -117,7 +117,7 @@ import { SubuserdashboardComponent } from './subuserdashboard/subuserdashboard.c
     CdkStepperModule,
     CdkTableModule, DxDrawerModule, DxListModule, DxRadioGroupModule, DxToolbarModule,
     CdkTreeModule,RouterModule,
-    DragDropModule,
+    DragDropModule, DxPopupModule, DxTemplateModule,
     MatAutocompleteModule,DxSelectBoxModule,
     DxTextAreaModule,
     DxFormModule,
@@ -161,14 +161,14 @@ import { SubuserdashboardComponent } from './subuserdashboard/subuserdashboard.c
     LayoutModule,
     NgbModule,
     MapModule,
-    RealTimeModule,
+
     RapportModule,
     EmployeesModule,
     HomeModule,
     DxValidatorModule,
     DxValidationSummaryModule
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders,DatePipe],
   bootstrap: [AppComponent],
   schemas:[CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA]
 })

@@ -69,4 +69,24 @@ SCNDlistUserSpacesperDevice(cinu:Number):Observable<any>
 removeSubUserSpace(cinu:Number,cin:Number,idSpace:Number):Observable<any>
 {return this.http.delete(`${this.API_URL}/SubUserSpace/delete/${cinu}/${cin}/${idSpace}`,{ responseType: 'text' });}
 
+
+listDevicesPerUser(cinu:Number):Observable<any>
+{return this.http.get(`${this.API_URL}/${cinu}/devices`); }
+
+getRTValues(reference:String):Observable<any>
+{return this.http.get(`${this.API_URL}/rt/${reference}`); }
+
+
+reportAlertRef(cinu:Number,reference:String):Observable<any>
+{return this.http.get(`${this.API_URL}/report/alert/${cinu}/${reference}`); }
+
+reportHistorytRef(cinu:Number,reference:String):Observable<any>
+{return this.http.get(`${this.API_URL}/report/history/${cinu}/${reference}`); }
+
+reportHistoryAlertRef(cinu:Number,reference:String):Observable<any>
+{return this.http.get(`${this.API_URL}/report/historyAlert/${cinu}/${reference}`); }
+
+
+reportAlertDate(cinu:Number,date:any):Observable<any>
+{return this.http.get(`${this.API_URL}/report/alert/date/${cinu}/${date}`); }
 }

@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
     selectedRevealMode: string = 'slide';
     isDrawerOpen: Boolean = true;
     elementAttr: any;
-
+    popuplOGOUT = false;
     constructor(private router: Router,private userService: UserServiceService) {
 
 
@@ -38,8 +38,8 @@ export class DashboardComponent implements OnInit {
         widget: 'dxButton',
         location: 'before',
         options: {
-            icon: 'runner',
-          onClick: () => this.logout()
+            icon: 'home',
+          onClick: () => this.popuplOGOUT=true
         }
        } ];
 
@@ -61,5 +61,10 @@ export class DashboardComponent implements OnInit {
       window.sessionStorage.clear();
       this.router.navigate(['/login']);
 
+    }
+
+
+    stay(){
+      this.popuplOGOUT=false;
     }
 }

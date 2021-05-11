@@ -30,7 +30,7 @@ areas=[];
   ];
 
    res;
-  smallIcon = new L.Icon({
+   smallIcon = new L.Icon({
     iconUrl: '../../../assets/marker-icon.png',
       iconRetinaUrl: '../../../assets/marker-icon-2x.png',
       iconSize:    [25, 41],

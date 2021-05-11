@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { RealTimeComponent } from './real-time.component';
+import { RtComponent } from './rt.component';
 
-const routes: Routes = [{ path: '', component: RealTimeComponent }];
+const routes: Routes = [{ path: '', component: RtComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class RealTimeRoutingModule { }
+export class RtRoutingModule { }

@@ -43,6 +43,46 @@
        </dx-list>
 
     </div>
+
+
+
+
+    <dx-popup
+    [width]="400"
+    [height]="200"
+    [showTitle]="true"
+    title="Are you sure for disconnecting ?"
+    [dragEnabled]="false"
+    [closeOnOutsideClick]="true"
+    [(visible)]="popuplOGOUT">
+
+
+
+
+
+ <br>
+   &nbsp;&nbsp;
+     <dx-button
+     icon="check"
+     type="danger"
+     text="Yes"
+     (onClick)="logout()"
+     id="log"
+     >
+   </dx-button>
+
+   <dx-button
+     icon="home"
+     type="success"
+     text="No"
+     (onClick)="stay()"
+     id="log"
+     >
+   </dx-button>
+
+
+</dx-popup>
+
     <br>
         <router-outlet></router-outlet>
 

@@ -19,6 +19,7 @@ export class SubuserdashboardComponent implements OnInit {
   admin:any;
   subuser:any;
   subuserRead='ROLE_SUWRITE';
+  popuplOGOUT = false;
   subuserRoles:any;
   subuserWrite='ROLE_SUWREAD';
   constructor(private router: Router) {
@@ -29,6 +30,8 @@ export class SubuserdashboardComponent implements OnInit {
 
   ngOnInit() {
     this.subuser=JSON.parse( sessionStorage.getItem('auth-user'));
+
+    sessionStorage.setItem('subuser', JSON.stringify(this.subuser));
     this.subuserRoles=this.subuser.roles;
 console.log("roles"+this.subuserRoles)
   }
@@ -44,8 +47,8 @@ console.log("roles"+this.subuserRoles)
         widget: 'dxButton',
         location: 'before',
         options: {
-            icon: 'runner',
-          onClick: () => this.logout()
+            icon: 'home',
+          onClick: () => this.popuplOGOUT=true
         }
        } ];
 
@@ -56,5 +59,10 @@ console.log("roles"+this.subuserRoles)
     window.sessionStorage.clear();
     this.router.navigate(['/login']);
 
+  }
+
+
+  stay(){
+    this.popuplOGOUT=false;
   }
 }

@@ -21,4 +21,7 @@ export class TestServiceService {
 
   }
 
+  resetPassword(email:String):Observable<any>
+  {return this.http.get(`${this.API_URL}/resetpassword/${email}`,{ responseType: 'text' });}
+
 }

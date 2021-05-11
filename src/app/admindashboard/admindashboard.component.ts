@@ -3,7 +3,6 @@ import {  OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkWithHref } from '@angular/router';
 import { DxDrawerComponent } from 'devextreme-angular/ui/drawer';
 import { AdminServiceService } from 'src/app/services/admin-service.service';
-
 @Component({
   selector: 'app-admindashboard',
   templateUrl: './admindashboard.component.html',
@@ -18,6 +17,7 @@ export class AdmindashboardComponent implements OnInit {
     isDrawerOpen: Boolean = true;
     elementAttr: any;
     admin:any;
+    popuplOGOUT = false;
     subuser:any;
 
     constructor(private router: Router,private adminService: AdminServiceService) {
@@ -36,6 +36,12 @@ export class AdmindashboardComponent implements OnInit {
         },
 
         err => console.log(err));
+
+
+
+
+
+
     }
 
     toolbarContent = [{
@@ -49,17 +55,22 @@ export class AdmindashboardComponent implements OnInit {
           widget: 'dxButton',
           location: 'before',
           options: {
-              icon: 'runner',
-            onClick: () => this.logout()
+              icon: 'home',
+            onClick: () => this.popuplOGOUT=true
           }
          } ];
 
 
 
 
-    logout(){
-      window.sessionStorage.clear();
-      this.router.navigate(['/login']);
+         logout(){
+          window.sessionStorage.clear();
+          this.router.navigate(['/login']);
 
-    }
+        }
+
+
+        stay(){
+          this.popuplOGOUT=false;
+        }
 }

@@ -4,21 +4,25 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdmindashboardComponent } from './admindashboard/admindashboard.component';
 import { LoginComponent } from './login/login.component';
 import { SubuserdashboardComponent } from './subuserdashboard/subuserdashboard.component';
+import{AdminGuardService} from './auth/Adminguard.service';
+import{UserGuardService} from './auth/UserGuard.service';
+import{SubUserGuardService} from './auth//SubUserGuard.service';
 
 const routes: Routes = [
 
-  { path: '', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) }
+  { path: '', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
+{ path: 'resetpassword', loadChildren: () => import('./password/password.module').then(m => m.PasswordModule) },
 
-,
 { path: 'dashboard',
-component:DashboardComponent,
+component:DashboardComponent, canActivate:[UserGuardService],
+
 children: [
 { path: 'map', loadChildren: () => import('./dashboard/map/map.module').then(m => m.MapModule) },
 
 
-{ path: 'real-time', loadChildren: () => import('./dashboard/real-time/real-time.module').then(m => m.RealTimeModule) },
 { path: 'profile', loadChildren: () => import('./dashboard/profile/profile.module').then(m => m.ProfileModule) },
 
+{ path: 'realtime', loadChildren: () => import('./dashboard/rt/rt.module').then(m => m.RtModule) },
 
 { path: 'rapport', loadChildren: () => import('./dashboard/rapport/rapport.module').then(m => m.RapportModule) },
 { path: 'employspaces', loadChildren: () => import('./dashboard/employspaces/employspaces.module').then(m => m.EmployspacesModule) },
@@ -31,7 +35,7 @@ children: [
 {path:'login',component:LoginComponent},
 
 { path: 'admindashboard',
-component:AdmindashboardComponent,
+component:AdmindashboardComponent,canActivate:[AdminGuardService],
 children: [
   { path: 'card', loadChildren: () => import('./admindashboard/card/card.module').then(m => m.CardModule) },
 
@@ -53,7 +57,7 @@ children: [
 },
 
 { path: 'subuserdashboard',
-component:SubuserdashboardComponent,
+component:SubuserdashboardComponent,canActivate:[SubUserGuardService],
 children: [
 
   { path: 'map', loadChildren: () => import('./subuserdashboard/map/map.module').then(m => m.MapModule) },
@@ -65,7 +69,9 @@ children: [
 
 
 ]
-},
+}
+
+
 
 
 

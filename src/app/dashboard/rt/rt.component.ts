@@ -4,25 +4,25 @@ import * as Highcharts from "highcharts/highstock";
 
 import { StockChart } from 'angular-highcharts';
 
-import { WebSocketAPI } from 'src/app/WebSocketAPI';
+import { WebSocketAPI2 } from 'src/app/WebSocketAPI2';
 
-import { SubuserserviceService } from 'src/app/services/subuserservice.service'
+import { UserServiceService } from '../../services/user-service.service';
 import notify from 'devextreme/ui/notify';
 import { Device } from 'src/app/models/device';
-import { WebSocketAPI3 } from 'src/app/WebSocketAPI3';
 @Component({
-  selector: 'app-realtime',
-  templateUrl: './realtime.component.html',
-  styleUrls: ['./realtime.component.css']
+  selector: 'app-rt',
+  templateUrl: './rt.component.html',
+  styleUrls: ['./rt.component.css']
 })
-export class RealtimeComponent implements OnInit {
+export class RtComponent implements OnInit {
 
-  webSocketAPI3: WebSocketAPI3;
+
+  webSocketAPI2: WebSocketAPI2;
   greeting: any;
   name: string;
   x:any;
-  cin_admin:number;
-  admin:any;
+
+  user:any;
   L:number;
   subuser:any;
   stock: StockChart;
@@ -35,26 +35,32 @@ Highcharts: typeof Highcharts = Highcharts;
 
 
 
-  constructor(private subuserService: SubuserserviceService) { }
+  constructor(private userService: UserServiceService) { }
   ngOnInit() {
     this.subuser=JSON.parse( sessionStorage.getItem('auth-user'));
+    this.userService.getuserBySubUser(this.subuser.cin).subscribe(
+      data => {
+        this.user=data;
+
+        console.log("cinUSER"+this.subuser.cin)
+        sessionStorage.setItem('user', JSON.stringify(this.user));
+      },err=>{console.log(err.error.message)})
 
 
+    this.webSocketAPI2 = new WebSocketAPI2();
 
-    this.webSocketAPI3 = new WebSocketAPI3();
-
-      this.webSocketAPI3.i=this.subuser.cin;
+      this.webSocketAPI2.i=11110000;
       this.listDevices();
-      this.webSocketAPI3.r=this.reference;
-      this.webSocketAPI3._connect();
+      this.webSocketAPI2.r=this.reference;
+      this.webSocketAPI2._connect();
 
-    this.getChart(this.subuserService,  this.webSocketAPI3.r);
+    this.getChart(this.userService,  this.webSocketAPI2.r);
 
     this.valuesRT();
 
   }
 
-getChart(ad:SubuserserviceService,ch:any){
+getChart(us:UserServiceService,ch:any){
 
 
 console.log("🚀 ~ file:ch", ch)
@@ -70,7 +76,7 @@ console.log("🚀 ~ file:ch", ch)
               var series = this.series[0];
               setInterval(function () {
                   var x =(new Date()).getTime(); // current time
-                ad.getRTValues(ch).subscribe(
+               us.getRTValues(ch).subscribe(
                   data=>{
                 console.log("🚀 ~ file:ch", ch)
                     tab=data;
@@ -128,7 +134,7 @@ console.log("🚀 ~ file:ch", ch)
             var data = [],
             time = (new Date()).getTime(),i;
             let tab:any=[];
-            tab=ad.getRTValues(ch);
+            tab=us.getRTValues(ch);
             console.log("🚀 ~ file: realtime.component.ts ~ line 152 ~ RealtimeComponent ~ getChart ~ ch", ch)
               for (i = -999; i <= 0; i += 1)
                 { //console.log(i)
@@ -155,7 +161,7 @@ console.log("🚀 ~ file:ch", ch)
 
 valuesRT(){
 
-  this.subuserService.getRTValues(this.reference).subscribe(
+  this.userService.getRTValues(this.reference).subscribe(
     data=>{
       this.listValues=data;
         this.v=this.listValues[0];
@@ -173,7 +179,7 @@ valuesRT(){
 
 
   listDevices() {
-    this.subuserService.listDevices(this.subuser.cin).subscribe(
+    this.userService.listDevicesPerUser(this.subuser.cin).subscribe(
       data => {
 
         this.devices = data;
@@ -187,17 +193,20 @@ valuesRT(){
 
 
 xx(){
-  this.webSocketAPI3.r=this.reference;
-  this.webSocketAPI3._send();
+  this.webSocketAPI2.r=this.reference;
+  this.webSocketAPI2._send();
   this.OK=false;
-this.getChart(this.subuserService, this.webSocketAPI3.r)
+this.getChart(this.userService, this.webSocketAPI2.r)
 
 
 }
 
 
 
+handleMessage(){
 
+  console.log (this.greeting)
+}
 
 }
 

@@ -12,10 +12,11 @@ const httpOptions = {
 
 
 export class AuthService {
-
+ok:boolean;
   constructor(private http: HttpClient) { }
 
   login(credentials): Observable<any> {
+    this.ok=true;
     return this.http.post(API_URL + 'login', {
       username: credentials.username,
       password: credentials.password

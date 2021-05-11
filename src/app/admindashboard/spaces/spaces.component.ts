@@ -18,6 +18,8 @@ import saveAs from 'file-saver';
 export class SpacesComponent implements OnInit {
   @ViewChild(DxDataGridComponent, { static: false }) dataGrid: DxDataGridComponent;
 
+  @ViewChild('aa', { static: false }) aa: DxDataGridComponent;
+
   dataSource: Space[] = [];
   areas: Area[] = [];
   xx: Area[] = [];
@@ -171,6 +173,16 @@ exportGrid1() {
       component: this.dataGrid.instance
   }).then(() => {
       doc.save('spaces.pdf');
+  })
+}
+
+exportGrid2() {
+  const doc = new jsPDF();
+  exportDataGridToPdf({
+      jsPDFDocument: doc,
+      component: this.aa.instance
+  }).then(() => {
+      doc.save('areas.pdf');
   })
 }
 

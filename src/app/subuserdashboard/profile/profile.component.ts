@@ -23,21 +23,14 @@ export class ProfileComponent implements OnInit {
   img: any[] = [];
   su:any;
   constructor( private authService: AuthService,
-    private tokenService: TokenStorageService,private router: Router,private userService: UserServiceService,private testService:TestServiceService) { }
+    private tokenService: TokenStorageService,private router: Router,private testService:TestServiceService) { }
 
   ngOnInit(): void {
 
     this.subuser=JSON.parse( sessionStorage.getItem('auth-user'));
     this.su= JSON.stringify(this.subuser);
   //  console.log("SUUU"+this.su)
-    this.userService.getuserBySubUser(this.subuser.cin).subscribe(
-      data => {
-        this.user=data;
-        sessionStorage.setItem('user', JSON.stringify(this.user));
 
-      },
-
-      err => console.log(err));
   }
   save(){
 

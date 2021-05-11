@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminServiceService } from 'src/app/services/admin-service.service';
-
+import { WebSocketAPI3 } from 'src/app/WebSocketAPI3';
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -8,6 +8,7 @@ import { AdminServiceService } from 'src/app/services/admin-service.service';
 })
 export class CardComponent implements OnInit {
 nbclient:number;
+
 users=[];
 devices=[];
 constraitns=[]
@@ -27,6 +28,9 @@ nbarea:number;
    this.listDev();
    this.listUs();
    this.listSpaces();
+
+
+
   }
 
 

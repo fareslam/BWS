@@ -3,6 +3,7 @@ import * as L from 'Leaflet';
 import { Device } from 'src/app/models/device';
 import { Space } from 'src/app/models/space';
 import { Map } from 'src/app/models/map';
+import { SubuserserviceService } from 'src/app/services/subuserservice.service'
 
 import ArrayStore from "devextreme/data/array_store";
 import notify from 'devextreme/ui/notify';
@@ -35,7 +36,7 @@ ar=[];
 reference:String;
 form:any={};
 subusers: SubUser[] = [];
-spaces=[];
+spaces:any=[];
 maps: Map[] = [];
 smallIcon = new L.Icon({
   iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-icon.png',
@@ -46,7 +47,7 @@ smallIcon = new L.Icon({
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
     shadowSize:  [41, 41]
 });
-  constructor() { }
+  constructor(private subuserService: SubuserserviceService) { }
 
 
 
@@ -55,7 +56,7 @@ smallIcon = new L.Icon({
     this.subuser=JSON.parse( sessionStorage.getItem('auth-user'));
 
 
-
+    this.listSpaces();
 
 
 
@@ -64,13 +65,36 @@ smallIcon = new L.Icon({
     this.createMap();
 
     this.subuser=JSON.parse( sessionStorage.getItem('auth-user'));
-
+    this.listSpaces()
 
 
   }
 
 
+ listSpaces(){
 
+  this.subuserService.listSpaces(this.subuser.cin).subscribe(
+    data=> {
+      this.spaces=data;
+      console.log(data);
+      for(let i=0;i<this.spaces.length;i++)
+      {
+       console.log("Longitude ==>",this.spaces[i]["longitude"])
+       console.log("latitude ==>",this.spaces[i]["latitude"])
+
+
+       const marker =L.marker([this.spaces[i]["latitude"], this.spaces[i]["longitude"]],{icon: this.smallIcon});
+       marker.bindPopup('<b> latitude='+this.spaces[i]["latitude"]+ '<br>'+'Longitude='+ this.spaces[i]["longitude"]+'</b>').addTo(this.map);
+
+      }
+      console.log(this.maps);
+    },
+    err=>{
+      console.log(err);
+        }
+  )
+
+  }
     createMap(){
       const tunisie = {
         lat: 33.892166,
