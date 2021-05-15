@@ -106,13 +106,13 @@ export class ClientareasComponent implements OnInit {
 
 
 save(){
-
+  let  d:Date=new Date();
   this.form={
     "ua_key":{
       "cinu":this.cinu,
       "idArea":this.idArea
     },
-    "number":0
+    "dateAff":d
   };
   this.adminService.affectUserArea(this.form).subscribe(
 

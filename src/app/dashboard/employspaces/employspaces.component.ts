@@ -113,13 +113,14 @@ export class EmployspacesComponent implements OnInit {
 
 
 save(){
+  let  d:Date=new Date();
 
   this.form={
     "sus_key":{
       "cin":this.cin,
       "idSpace":this.idSpace
     },
-    "number":0
+    "dateAff":d
   };
   this.userService.affectSubUserSpace(this.form).subscribe(
 

@@ -121,14 +121,14 @@ export class ClientDevicesComponent implements OnInit {
 
 
 save(){
-
+let  d:Date=new Date();
   this.form={
     "udk":{
       "cinu":this.cinu,
       "reference":this.reference
     },
     "cin_admin":this.cin_admin,
-    "number":0
+    "dateAff":d
   };
   this.adminService.affectUserDevice(this.form).subscribe(
 

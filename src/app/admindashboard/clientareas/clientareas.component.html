@@ -64,7 +64,7 @@ keyExpr="ua_key">
 <dxo-editing
 mode="popup"
 [useIcons]="true"
-[allowAdding]="true"
+
 
 [allowDeleting]="true"
 
@@ -73,19 +73,22 @@ mode="popup"
 <dxo-export [enabled]="true"></dxo-export>
 <dxo-paging [pageSize]="5"></dxo-paging>
 
-<dxi-column dataField="ua_key.cinu" caption="CIN" [width]="400">
+<dxi-column dataField="ua_key.cinu" caption="CIN" >
 
 </dxi-column>
 
 
 
-<dxi-column dataField="ua_key.idArea" caption="Area"   [width]="400">
+<dxi-column dataField="ua_key.idArea" caption="Area"   >
 
 
 </dxi-column>
 
 
+<dxi-column dataField="dateAff" caption="Assignment date"   >
 
+
+</dxi-column>
 
 
 <dxi-column type="buttons" [width]="110" caption="Actions">

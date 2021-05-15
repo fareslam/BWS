@@ -16,6 +16,11 @@ import { ClientArea } from '../models/client-area';
   providedIn: 'root'
 })
 export class AdminServiceService {
+  public popupspace:boolean=false;
+  public popuparea:boolean=false;
+  public lat:number=0;
+  public lng:number=0;
+  public geojson:string='';
 
   private API_URL='http://localhost:9191/api/bws/admin';
 
@@ -120,7 +125,8 @@ deleteArea(idArea:Number):Observable<any>{
 
 /*****Space Management***** */
 addSpace(s:any):Observable<any>
-{return this.http.post(`${this.API_URL}/space/add`,s);}
+{
+  return this.http.post(`${this.API_URL}/space/add`,s);}
 
 getSpace(idSpace:Number):Observable<any>
 {return this.http.get(`${this.API_URL}/space/${idSpace}`);}

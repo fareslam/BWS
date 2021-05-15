@@ -12,9 +12,14 @@ import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
 
 })
 export class AreasComponent implements  AfterViewInit,OnInit {
-
+name
   map;
   on;
+  test=false;
+  xx=false;
+  idArea:any;
+  f:number;
+//  popupSpace:boolean=this.adminService.popup;
 spaces=[];
 areas=[];
    gbeli = [
@@ -31,8 +36,8 @@ areas=[];
 
    res;
    smallIcon = new L.Icon({
-    iconUrl: '../../../assets/marker-icon.png',
-      iconRetinaUrl: '../../../assets/marker-icon-2x.png',
+    iconUrl: '../../../assets/my.png',
+      iconRetinaUrl: '../../../assets/my.png',
       iconSize:    [25, 41],
       iconAnchor:  [12, 41],
       popupAnchor: [1, -34],
@@ -49,10 +54,17 @@ areas=[];
     this.listSpaces();
     this.listAreas();
 
+
+
+
+
   }
   ngAfterViewInit(): void {
+
     this.createMap(this.adminService);
 
+
+//this.test=this.xx;
 
   }
 
@@ -66,6 +78,7 @@ createMap(ad:AdminServiceService){
     lat: 33.892166,
     lng: 9.561555499999997,
   };
+
 
 
 
@@ -102,7 +115,7 @@ this.map.on('draw:created', function (e) {
 
   drawnItems.eachLayer(function(layer) {
       if (layer instanceof L.Polygon) {
-          shapes.push(layer.getLatLngs())
+      /*    shapes.push(layer.getLatLngs())
           var shape = layer.toGeoJSON()
           //
           var shape_for_db = JSON.stringify(shape);
@@ -118,9 +131,13 @@ this.map.on('draw:created', function (e) {
 
                 }
 
-             console.log("length "+tab.length)
+             console.log("length "+tab.length)*/
               var p=JSON.stringify(layer.toGeoJSON());
-              let name = prompt("Please specify the area name :", "");
+              setTimeout(() => {    ad.popuparea=true;
+                ad.geojson=p;}, 1000);
+
+
+          /*    let name = prompt("Please specify the area name :", "");
               ad.addArea(
                 { "name":name,
                 "geojson":p}).subscribe(
@@ -134,7 +151,7 @@ this.map.on('draw:created', function (e) {
                       notify(err.error.message, "warning", 1500);
                   }
                 )
-                layer.bindPopup('<b>'+name+'</b>'); }
+                layer.bindPopup('<b>'+name+'</b>'); */}
 
                 if (layer instanceof L.Circle) {
           shapes.push([layer.getLatLng()])
@@ -151,8 +168,16 @@ this.map.on('draw:created', function (e) {
           var lat = layer.getLatLng().lat;
           var lng = layer.getLatLng().lng;
 
-         let name = prompt("Please specify the space name :", "");
-          ad.addSpace(
+          ad.lat=lat;
+          ad.lng=lng;
+
+       //  let name = prompt("Please specify the space name :", "");
+         ad.popupspace=true;
+
+         //console.log("popup"+ ad.popupspace)
+       //  alert("popup yelzm temchi"+ ad.popupspace)
+
+          /*ad.addSpace(
             { "name":name,
             "longitude":lng,
             "latitude":lat
@@ -167,10 +192,16 @@ this.map.on('draw:created', function (e) {
            }
             )
          layer.bindPopup('<b>'+name+'</b>');
-          console.log(layer.getLatLng())
+          console.log(layer.getLatLng())*/
 
       }})
-      ;})}
+
+      ;})
+
+
+
+
+  }
 
 
 
@@ -197,7 +228,63 @@ listSpaces(){
          })
 }
 
+addS(){
+this.adminService.addSpace(
+  { "name":this.name,
+  "longitude":this.adminService.lng,
+  "latitude":this.adminService.lat,
+  "idArea":this.idArea
+   }
+   ).subscribe(data=>{
+     console.log(data);
+     this.listSpaces();
+     const marker =L.marker([this.adminService.lat, this.adminService.lng],{icon: this.smallIcon});
+     marker.addTo(this.map) .bindPopup('<b>'+this.name+'</b>');
 
+     notify("Space added successfully ", "success", 2500);
+
+
+
+      this.adminService.popupspace=false
+      this.adminService.lat=0;
+        this.adminService.lng=0;
+        window.location.reload()   },
+      err=>{
+     console.log(err.error.message);
+     notify(err.error.message, "warning", 1500);
+ }
+  )
+
+}
+
+
+addA(){
+  this.adminService.addArea(
+    { "name":this.name,
+    "geojson":this.adminService.geojson,
+
+     }
+     ).subscribe(data=>{
+       console.log(data);
+
+
+       notify("Area added successfully ", "success", 2500);
+
+       window.location.reload()
+
+        this.adminService.popuparea=false
+        this.adminService.geojson='';
+
+
+          this.listAreas();
+        },
+        err=>{
+       console.log(err.error.message);
+       notify(err.error.message, "warning", 1500);
+   }
+    )
+
+  }
 
 listAreas(){
 
