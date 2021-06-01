@@ -3,6 +3,7 @@ import { AuthService } from '../services/auth.service';
 import { TokenStorageService } from '../services/token.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import notify from 'devextreme/ui/notify';
+import { FormControl, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   password:string;
   username:string;
-
+dat:any;
   form:any={};
   isLoggedIn = false;
   isLoginFailed = false;
@@ -71,5 +72,9 @@ export class LoginComponent implements OnInit {
 
 
 
+check()
+{
 
+  alert(this.dat)
+}
 }

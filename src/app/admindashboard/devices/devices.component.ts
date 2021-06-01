@@ -4,7 +4,7 @@ import { AdminServiceService } from 'src/app/services/admin-service.service';
 import notify from 'devextreme/ui/notify';
 import { Space } from 'src/app/models/space';
 import { ConstraintCo2 } from 'src/app/models/constraint-co2';
-import { Area } from 'src/app/models/area';
+import { RtCo2 } from 'src/app/models/rt-co2';
 import {DxFormComponent } from 'devextreme-angular';
 @Component({
   selector: 'app-devices',
@@ -23,6 +23,7 @@ popupUpdate = false;
 name:String;
 minv:any;
 maxv:any;
+RT:any;
 namex:String;
 idSpace:Number;
 idConstraint:Number;
@@ -35,6 +36,7 @@ tab:any=[];
 popupAdd = false;
 popupDelete = false;
 space:Space;
+realtime:any;
 constraint:ConstraintCo2;
 dataSource = [];
 spaces: Space[] = [];
@@ -44,6 +46,7 @@ reference:String;
 nameConstraint:any;
 password:string;
 username:string;
+valueCO2:any;
 buttonOptions: any = {
   icon:"plus",
   text: "Add",
@@ -94,20 +97,33 @@ for (let i=0;i<this.dataSource.length;i++)
       this.lat=this.space.latitude;
       this.long=this.space.longitude;
 
+
+
+
+      },
+    err=>{console.log(err.error.message)}
+  )
+
+  this.adminService.getDeviceRT_LastValue(this.dataSource[i].reference).subscribe(
+    data=>{this.realtime=data;
+
+      console.log("realtime "+this.realtime[0])
+
+this.valueCO2=this.realtime["value_co2"];
       this.l={
         "name":this.namex,
         "nameConstraint":this.nameC,
         "long":this.long,
         "lat":this.lat,
         "minValue":this.minv,
-        "maxValue":this.maxv
+        "maxValue":this.maxv,
+        "valueco2":this.valueCO2
       }
     this.tab.push(this.l)
 
       },
     err=>{console.log(err.error.message)}
   )
-
 
 
 

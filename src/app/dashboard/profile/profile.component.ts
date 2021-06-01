@@ -7,6 +7,7 @@ import { TestServiceService } from 'src/app/services/test-service.service';
 import notify from 'devextreme/ui/notify';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenStorageService } from 'src/app/services/token.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -14,6 +15,11 @@ import { TokenStorageService } from 'src/app/services/token.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+
+  range = new FormGroup({
+    start: new FormControl(),
+    end: new FormControl()
+  });
   password:string;
   username:string;
   user:any;

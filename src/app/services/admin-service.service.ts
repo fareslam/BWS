@@ -157,4 +157,7 @@ deleteUserAreas(cinu:Number,idArea:Number):Observable<any>{
   //**Real Time managment */
   getRTValues(reference:String):Observable<any>
 {return this.http.get(`${this.API_URL}/rt/${reference}`); }
+
+getDeviceRT_LastValue(reference:String):Observable<any>
+{return this.http.get(`${this.API_URL}/device_rt/${reference}`); }
 }

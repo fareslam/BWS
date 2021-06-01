@@ -46,6 +46,16 @@
 
             </p>           </div>
             <hr>
+
+            <div *ngIf="tab[j].valueco2 != undefined">  <p>
+              <b  style="color:green">Last CO2 value deteced :</b> <br>
+
+              <span style="font-weight: bolder;color:red"> {{tab[j].valueco2}}</span><br>
+
+            </p></div>
+
+          <hr>
+
             <div *ngIf="device.idConstraint != null">  <p>
               <b>Constraint :</b> <br>
 
