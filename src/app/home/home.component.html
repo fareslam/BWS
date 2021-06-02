@@ -1,85 +1,65 @@
+<header class="header-area overlay">
+  <nav class="navbar navbar-expand-md navbar-dark">
+  <div class="container">
+    <a href="#" class="navbar-brand">Bootdey.com</a>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="#">Platform IoT on air Quality</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#main-nav">
+      <span class="menu-icon-bar"></span>
+      <span class="menu-icon-bar"></span>
+      <span class="menu-icon-bar"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarColor01">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Home
-
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/login">Login</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="https://bewireless-solutions.com/">About bws</a>
-      </li>
-
-    </ul>
-    <img src="../../assets/logo.png" id="logo"style="float:right;width:100px;">
-
+    <div id="main-nav" class="collapse navbar-collapse">
+      <ul class="navbar-nav ml-auto">
+        <li><a href="#" class="nav-item nav-link active">Home</a></li>
+        <li><a href="#" class="nav-item nav-link">About Us</a></li>
+        <li class="dropdown">
+          <a href="#" class="nav-item nav-link" data-toggle="dropdown">Services</a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-item">Dropdown Item 1</a>
+            <a href="#" class="dropdown-item">Dropdown Item 2</a>
+            <a href="#" class="dropdown-item">Dropdown Item 3</a>
+          </div>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="nav-item nav-link" data-toggle="dropdown">Portfolio</a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-item">Dropdown Item 1</a>
+            <a href="#" class="dropdown-item">Dropdown Item 2</a>
+            <a href="#" class="dropdown-item">Dropdown Item 3</a>
+            <a href="#" class="dropdown-item">Dropdown Item 4</a>
+            <a href="#" class="dropdown-item">Dropdown Item 5</a>
+          </div>
+        </li>
+        <li><a href="#" class="nav-item nav-link">Contact</a></li>
+      </ul>
+    </div>
   </div>
 </nav>
-<ngb-carousel #carousel [interval]="3000" [pauseOnHover]="pauseOnHover" [pauseOnFocus]="pauseOnFocus" (slide)="onSlide($event)">
-  <ng-template ngbSlide *ngFor="let img of images; index as i">
 
-
-
-    <div class="carousel-caption">
-      <h3>Bws platform IoT on air Quality</h3>
-    </div>
-    <a href="https://bewireless-solutions.com/" target="_blank" rel="nofollow noopener noreferrer">
-      <div class="picsum-img-wrapper">
-        <img [src]="img">
-      </div>
-    </a>
-  </ng-template>
-</ngb-carousel>
-
-
-
-
-
-<div class="card mb-3">
-  <h3 class="card-header">Sensor Co2</h3>
-  <div class="card-body">
-    <h5 class="card-title">CO2 monitoring in the air</h5>
-    <h6 class="card-subtitle text-muted">Example of Co2 sensor</h6>
+<div class="banner">
+  <div class="container">
+    <h1>Bootstrap 4 Navbar</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec elit ex. Etiam elementum lectus et tempor molestie.</p>
+    <a href="#content" class="button button-primary">Learn More</a>
   </div>
-  <hr>
-  <div>
-<img src="../../assets/co2.jpg" width ="300px">
-
-
-<div class="card border-secondary mb-3" style="max-width: 20rem;float: right;">
-<div class="card-header">Description</div>
-<div class="card-body">
-  <h4 class="card-title">Co2 sensor </h4>
-  <p class="card-text"><b>A carbon dioxide sensor or CO2 sensor</b> is an instrument for the measurement of carbon dioxide
-    s. The most common principles for CO2 sensors are infrared gas sensors (NDIR) and chemical gas sensors.
-     Measuring carbon dioxide is important in monitoring indoor air quality,
-     the function of the lungs in the form of a capnograph device, and many industrial processes.</p>
 </div>
-</div>
+</header>
 
-</div>
-
-
-<div class="jumbotron">
-  <h1 class="display-3" style="color:darkgoldenrod">WELCOME TO OUR PLATFORM IoT !</h1>
-  <p class="lead" style="color:white">The company <b>Be Wireless Solutions (BWS)</b> created in 2016, having obtained the IoT license in 2017 and the start up label in 2019.<br>
-
-   Pioneer in the development of IOT (Internet Of Things) solutions in Tunisia for saving resources, including:<br>
-
-      Wireless sensors: for data collection and remote control of connected objects.<br>
-      A connectivity offer: the installation and operation of an IoT network (LoRa).<br>
-      “Business” applications: web and mobile to monitor connected objects in real time and remotely.</p>
-  <hr class="my-4">
-  <h6 style="color:darkgoldenrod">All the credits go to Wifek younes & Fares lamloumm</h6>
-
-</div>
-
+<main>
+<section id="content" class="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec elit ex. Etiam elementum lectus et tempor molestie. Pellentesque vestibulum dui sit amet dui volutpat sollicitudin. Etiam non erat finibus, iaculis nunc vel, convallis eros. Etiam efficitur tempor dui, vitae fringilla ipsum tristique quis. Aliquam erat volutpat. Cras ullamcorper ex et viverra vulputate. Nam lectus ligula, pretium nec risus nec, ultricies fringilla mauris. Proin quis venenatis neque, iaculis porta nulla. </p>
+      </div>
+      <div class="col-md-4">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec elit ex. Etiam elementum lectus et tempor molestie. Pellentesque vestibulum dui sit amet dui volutpat sollicitudin. Etiam non erat finibus, iaculis nunc vel, convallis eros. Etiam efficitur tempor dui, vitae fringilla ipsum tristique quis. Aliquam erat volutpat. Cras ullamcorper ex et viverra vulputate. Nam lectus ligula, pretium nec risus nec, ultricies fringilla mauris. Proin quis venenatis neque, iaculis porta nulla. </p>
+      </div>
+      <div class="col-md-4">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec elit ex. Etiam elementum lectus et tempor molestie. Pellentesque vestibulum dui sit amet dui volutpat sollicitudin. Etiam non erat finibus, iaculis nunc vel, convallis eros. Etiam efficitur tempor dui, vitae fringilla ipsum tristique quis. Aliquam erat volutpat. Cras ullamcorper ex et viverra vulputate. Nam lectus ligula, pretium nec risus nec, ultricies fringilla mauris. Proin quis venenatis neque, iaculis porta nulla. </p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>

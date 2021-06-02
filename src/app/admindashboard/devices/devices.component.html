@@ -23,9 +23,9 @@
 
   <ul>
       <li *ngFor="let device of dataSource;let x in tab;let j=index;" >
-        <div class="card border-dark " style="max-width: 18rem;">
-          <div class="card-header">       <b>REF:</b>
-            <span>{{device.reference}}</span></div>
+        <div class="card border-light " style="max-width: 18rem;background-color: rgba(209, 241, 241, 0.733);">
+          <div class="card-header">       <b>Reference :</b>
+            <span><b>{{device.reference}}</b></span></div>
           <div class="card-body text-dark">
 
             <div class="card-text">
@@ -41,8 +41,8 @@
               <b>Space :</b> <br>
 
               <span style="font-weight: bolder;font-size: larger;">{{tab[j].name}}</span><br>
-              <b>Longitude:</b>{{tab[j].long}}<br>
-              <b>Latitude :</b> {{tab[j].lat}}<br>
+
+
 
             </p>           </div>
             <hr>
@@ -54,14 +54,20 @@
 
             </p></div>
 
+            <div *ngIf="tab[j].valueco2 == undefined">  <p>
+              <b  style="color:green">Last CO2 value deteced :</b> <br>
+
+              <span style="font-weight: bolder;color:red"> No value</span><br>
+
+            </p></div>
+
           <hr>
 
             <div *ngIf="device.idConstraint != null">  <p>
               <b>Constraint :</b> <br>
 
               <span style="font-weight: bolder;"> {{tab[j].nameConstraint}}</span><br>
-              <b>Min Value :</b> <br>{{tab[j].minValue}}<br>
-              <b>Max Value :</b> <br>{{tab[j].maxValue}}<br>
+              <b>[ {{tab[j].minValue}} , {{tab[j].maxValue}} ]</b>
             </p></div>
 
             <div *ngIf="device.idConstraint == null || device.idConstraint=='' ">  <p>

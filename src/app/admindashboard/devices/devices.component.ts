@@ -30,9 +30,10 @@ idConstraint:Number;
 imageurl:String;
 ss:String[]=[];
 l:any={};
+r:any={};
 
 tab:any=[];
-
+real:any=[]
 popupAdd = false;
 popupDelete = false;
 space:Space;
@@ -82,6 +83,26 @@ readData() {
 for (let i=0;i<this.dataSource.length;i++)
 {
 
+
+  this.adminService.getDeviceRT_LastValue(this.dataSource[i].reference).subscribe(
+    data=>{this.realtime=data;
+
+      console.log("realtime "+this.realtime[0])
+
+this.valueCO2=this.realtime["value_co2"];
+this.l={
+
+
+  "valueco2":this.valueCO2
+}
+
+
+      },
+    err=>{console.log(err.error.message)}
+  )
+
+
+
   this.adminService.getConstraint(this.dataSource[i].idConstraint).subscribe(
     data=>{this.constraint=data;
             this.nameC=this.constraint.nameConstraint;
@@ -97,20 +118,8 @@ for (let i=0;i<this.dataSource.length;i++)
       this.lat=this.space.latitude;
       this.long=this.space.longitude;
 
-
-
-
-      },
-    err=>{console.log(err.error.message)}
-  )
-
-  this.adminService.getDeviceRT_LastValue(this.dataSource[i].reference).subscribe(
-    data=>{this.realtime=data;
-
-      console.log("realtime "+this.realtime[0])
-
-this.valueCO2=this.realtime["value_co2"];
       this.l={
+
         "name":this.namex,
         "nameConstraint":this.nameC,
         "long":this.long,
@@ -121,9 +130,12 @@ this.valueCO2=this.realtime["value_co2"];
       }
     this.tab.push(this.l)
 
+
       },
     err=>{console.log(err.error.message)}
   )
+
+
 
 
 

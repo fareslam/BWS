@@ -1,39 +1,56 @@
 
 import { Component, ViewChild } from '@angular/core';
 import { NgbCarousel, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
+import * as jQuery from 'jquery';
+declare var $: any;
 
 
-@Component({selector: 'app-home', 
+@Component({selector: 'app-home',
 templateUrl: './home.component.html',
 styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
- images = ['../../assets/bws0.jpg','../../assets/bws4.jpg'];
 
-  paused = false;
-  unpauseOnArrow = false;
-  pauseOnIndicator = false;
-  pauseOnHover = true;
-  pauseOnFocus = true;
+  ngOnInit(): void {
 
-  @ViewChild('carousel', {static : true}) carousel: NgbCarousel;
+this.function($);
 
-  togglePaused() {
-    if (this.paused) {
-      this.carousel.cycle();
+  }
+
+
+    function($) {
+    $(window).on('scroll', function() {
+    if ($(this).scrollTop() >= 200) {
+      $('.navbar').addClass('fixed-top');
+    } else if ($(this).scrollTop() == 0) {
+      $('.navbar').removeClass('fixed-top');
+    }
+  });
+
+  function adjustNav() {
+    var winWidth = $(window).width(),
+      dropdown = $('.dropdown'),
+      dropdownMenu = $('.dropdown-menu');
+
+    if (winWidth >= 768) {
+      dropdown.on('mouseenter', function() {
+        $(this).addClass('show')
+          .children(dropdownMenu).addClass('show');
+      });
+
+      dropdown.on('mouseleave', function() {
+        $(this).removeClass('show')
+          .children(dropdownMenu).removeClass('show');
+      });
     } else {
-      this.carousel.pause();
+      dropdown.off('mouseenter mouseleave');
     }
-    this.paused = !this.paused;
   }
 
-  onSlide(slideEvent: NgbSlideEvent) {
-    if (this.unpauseOnArrow && slideEvent.paused &&
-      (slideEvent.source === NgbSlideEventSource.ARROW_LEFT || slideEvent.source === NgbSlideEventSource.ARROW_RIGHT)) {
-      this.togglePaused();
-    }
-    if (this.pauseOnIndicator && !slideEvent.paused && slideEvent.source === NgbSlideEventSource.INDICATOR) {
-      this.togglePaused();
-    }
-  }
+  $(window).on('resize', adjustNav);
+
+  adjustNav();
+};
+
 }
+
