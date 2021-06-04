@@ -15,7 +15,7 @@ background-color: hsl(241, 25%, 47%);
 justify-content: space-around;
 padding:20px 0;
 color:rgb(255, 254, 254);
-
+height: 65px;
 align-items: center;
 }
 nav.logo{
