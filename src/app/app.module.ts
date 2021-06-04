@@ -99,6 +99,7 @@ import { SubuserdashboardComponent } from './subuserdashboard/subuserdashboard.c
     FooterComponent,
 
     SubuserdashboardComponent
+
   ],
 //https://mdbootstrap.com/docs/angular/navigation/footer/
   imports: [

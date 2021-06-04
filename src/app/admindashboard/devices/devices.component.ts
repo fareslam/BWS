@@ -48,6 +48,7 @@ nameConstraint:any;
 password:string;
 username:string;
 valueCO2:any;
+dateCO2:any;
 buttonOptions: any = {
   icon:"plus",
   text: "Add",
@@ -80,9 +81,12 @@ readData() {
 
       this.dataSource = data;
 
+
+
 for (let i=0;i<this.dataSource.length;i++)
 {
-
+  this.valueCO2="";
+  this.dateCO2="";
 
   this.adminService.getDeviceRT_LastValue(this.dataSource[i].reference).subscribe(
     data=>{this.realtime=data;
@@ -90,13 +94,18 @@ for (let i=0;i<this.dataSource.length;i++)
       console.log("realtime "+this.realtime[0])
 
 this.valueCO2=this.realtime["value_co2"];
+this.dateCO2=this.realtime["date"];
+
+console.log("dattttt"+this.dateCO2)
+
+
+
 this.l={
 
 
-  "valueco2":this.valueCO2
+  "valueco2":this.valueCO2,
+  "dateco2":this.dateCO2
 }
-
-
       },
     err=>{console.log(err.error.message)}
   )
@@ -126,9 +135,20 @@ this.l={
         "lat":this.lat,
         "minValue":this.minv,
         "maxValue":this.maxv,
-        "valueco2":this.valueCO2
+        "valueco2":this.valueCO2,
+        "dateco2":this.dateCO2
       }
+
     this.tab.push(this.l)
+
+    this.namex="";
+    this.nameC="";
+    this.lat="";
+    this.long="";
+
+    this.valueCO2="-------";
+    this.dateCO2="------";
+    console.log(this.tab)
 
 
       },
@@ -278,6 +298,7 @@ save(device){
 
                               err=> {
                                 console.log(err.error.message);});
+                                window.location.reload()
 
                           }
 
@@ -305,8 +326,8 @@ save(device){
       "reference":this.reference,
       "name":this.name,
       //"imageurl": "../../../assets/"+this.img[0]["name"],
-     "idSpace":this.idSpace
-      //"idConstraint":this.idConstraint
+     "idSpace":this.idSpace,
+     "idConstraint":this.idConstraint
     }
 
     if (this.dev.name==null){  notify("Error in name !", "warning", 1500);}
@@ -318,7 +339,7 @@ this.adminService.addDevice(this.dev).subscribe(
         notify("Device added successfully", "success", 1500);
 
 
-        window.location.reload()
+       window.location.reload()
         this.popupAdd = false;
 
         this.adminService.listdevices().subscribe(
