@@ -89,4 +89,15 @@ reportHistoryAlertRef(cinu:Number,reference:String):Observable<any>
 
 reportAlertDate(cinu:Number,date:any):Observable<any>
 {return this.http.get(`${this.API_URL}/report/alert/date/${cinu}/${date}`); }
+
+getSpace(idSpace:Number):Observable<any>
+{return this.http.get(`${this.API_URL}/space/${idSpace}`);}
+
+
+getDeviceRT_LastValue(reference:String):Observable<any>
+{return this.http.get(`${this.API_URL}/device_rt/${reference}`); }
+
+
+getConstraint(idConstraint:Number):Observable<any>
+{return this.http.get(`${this.API_URL}/constraint/${idConstraint}`);}
 }

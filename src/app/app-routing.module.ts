@@ -27,7 +27,9 @@ children: [
 { path: 'rapport', loadChildren: () => import('./dashboard/rapport/rapport.module').then(m => m.RapportModule) },
 { path: 'employspaces', loadChildren: () => import('./dashboard/employspaces/employspaces.module').then(m => m.EmployspacesModule) },
 
-{ path: 'employees', loadChildren: () => import('./dashboard/employees/employees.module').then(m => m.EmployeesModule) }
+{ path: 'employees', loadChildren: () => import('./dashboard/employees/employees.module').then(m => m.EmployeesModule) },
+{ path: 'devices', loadChildren: () => import('./dashboard/devices/devices.module').then(m => m.DevicesModule) }
+
 
 
 
@@ -53,6 +55,7 @@ children: [
   { path: 'constraints', loadChildren: () => import('./admindashboard/constraints/constraints.module').then(m => m.ConstraintsModule) }
   ,{ path: 'devices', loadChildren: () => import('./admindashboard/devices/devices.module').then(m => m.DevicesModule) },
   { path: 'clientdevices', loadChildren: () => import('./admindashboard/client-devices/client-devices.module').then(m => m.ClientDevicesModule) }
+
 ]
 },
 

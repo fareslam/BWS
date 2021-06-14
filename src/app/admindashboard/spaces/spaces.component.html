@@ -17,7 +17,7 @@
     type="danger"
     (onClick)="exportGrid1()">
 </dx-button>
-<dx-data-grid id="gridContainer"
+<dx-data-grid id="gridContainer" class="table shadow p-3 mb-5 bg-white rounded"
 [showBorders]="true"
   [rowAlternationEnabled]="true"
 
@@ -84,7 +84,7 @@ keyExpr="idSpace">
     (onClick)="exportGrid2()">
 </dx-button>
 
-<dx-data-grid id="gridContainer" #aa
+<dx-data-grid id="gridContainer" #aa class="table shadow p-3 mb-5 bg-white rounded"
 [showBorders]="true"
 [dataSource]="xx"
 [rowAlternationEnabled]="true"

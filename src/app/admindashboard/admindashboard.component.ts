@@ -43,15 +43,15 @@ export class AdmindashboardComponent implements OnInit {
 
 
     }
+    // {
 
+    //   widget: 'dxButton',
+    //   location: 'before',
+    //   options: {
+    //       icon: 'menu',
+    //       onClick: () => this.isDrawerOpen = !this.isDrawerOpen
+    //  } },
     toolbarContent = [{
-
-        widget: 'dxButton',
-        location: 'before',
-        options: {
-            icon: 'menu',
-            onClick: () => this.isDrawerOpen = !this.isDrawerOpen
-       } },{
           widget: 'dxButton',
           location: 'before',
           options: {
