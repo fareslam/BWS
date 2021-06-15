@@ -29,7 +29,7 @@ export class ClientDevicesComponent implements OnInit {
   reference:String;
   form:any={};
   users: User[] = [];
-  devices:Device[] = [];
+  devices:any = [];
   //clients: string[];
 
   ngOnInit(): void {
@@ -108,7 +108,7 @@ export class ClientDevicesComponent implements OnInit {
     }
 
     listDevices() {
-      this.adminService.listdevices().subscribe(
+      this.adminService.listdevicesNull().subscribe(
         data => {
 
           this.devices = data;

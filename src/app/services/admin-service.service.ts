@@ -55,6 +55,9 @@ updateDeviceCT(reference:string,d:Device):Observable<any>{
 listdevices():Observable<any>
  {return this.http.get(`${this.API_URL}/device/all`);}
 
+ listdevicesNull():Observable<any>
+ {return this.http.get(`${this.API_URL}/devicesNull/all`);}
+
 
 listdevicesByIDCT():Observable<any>
 {return this.http.get(`${this.API_URL}/device/ct/all`);}

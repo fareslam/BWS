@@ -21,6 +21,7 @@ currentDevice: any;
 popupVisible = false;
 popupUpdate = false;
 name:String;
+values:any;
 minv:any;
 maxv:any;
 RT:any;
@@ -42,6 +43,8 @@ constraint:ConstraintCo2;
 dataSource = [];
 spaces: Space[] = [];
 nameS:any;
+vc2:any;
+dc2:any
 nameC:any;
 reference:String;
 nameConstraint:any;
@@ -139,16 +142,8 @@ this.l={
         "dateco2":this.dateCO2
       }
 
-    this.tab.push(this.l)
+      this.tab.push(this.l)
 
-    this.namex="";
-    this.nameC="";
-    this.lat="";
-    this.long="";
-
-    this.valueCO2="-------";
-    this.dateCO2="------";
-    console.log(this.tab)
 
 
       },
@@ -159,6 +154,14 @@ this.l={
 
 
 
+  this.namex="";
+  this.nameC="";
+  this.lat="";
+  this.long="";
+
+  this.valueCO2="-------";
+  this.dateCO2="------";
+  console.log(this.tab)
 
 
 }
@@ -232,11 +235,41 @@ this.popupVisible=true;
 
   this.adminService.getConstraint(this.device.idConstraint).subscribe(
     data=>{this.constraint=data;
-            this.nameC=this.constraint.nameConstraint+"\n\ Min Value="+this.constraint.min_value+" °C"+
-            "\n\n Max Value="+this.constraint.max_value+" °C";
+            this.nameC=this.constraint.nameConstraint;
+            this.values=   "[ Min Value="+this.constraint.min_value+" °C , Max Value="+this.constraint.max_value+" °C ]";
+
       },
     err=>{console.log(err.error.message)}
   )
+
+  this.adminService.getDeviceRT_LastValue(this.device.reference).subscribe(
+    data=>{this.realtime=data;
+
+      if (this.realtime !=undefined)
+
+   {   console.log("realtime "+this.realtime[0])
+
+   this.vc2=this.realtime["value_co2"];
+   this.dc2=this.realtime["date"];}
+   else {
+
+
+
+    this.vc2="---------";
+    this.dc2="----------";
+   }
+
+
+
+
+
+      },
+    err=>{console.log(err.error.message)}
+  )
+
+
+
+
 }
 
 

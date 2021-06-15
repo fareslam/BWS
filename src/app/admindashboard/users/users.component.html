@@ -1,4 +1,4 @@
-<h4 class="display-4"  style="text-align: center;">Users Management</h4>
+<h4 class="display-4"  style="text-align: center;">Client Management</h4>
 <hr>
 <dx-button id="exportButton"
     icon="exportpdf"
@@ -8,7 +8,7 @@
     (onClick)="exportGrid()">
 </dx-button>
 <br>
-<dx-data-grid id="gridContainer"
+<dx-data-grid id="gridContainer" class="table shadow p-3 mb-5 bg-white rounded"
 [dataSource]="dataSource"
 [rowAlternationEnabled]="true"
 (onExporting)="onExporting($event)"

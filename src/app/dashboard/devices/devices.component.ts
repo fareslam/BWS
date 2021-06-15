@@ -23,6 +23,9 @@ dev:any={}; long:any;lat:any;
 currentDevice: any;
 popupVisible = false;
 popupUpdate = false;
+values:any;
+dc2:any;
+vc2:any;
 name:String;
 minv:Number;
 maxv:Number;
@@ -246,5 +249,55 @@ this.l={
 
 
 
+                  showInfo(device) {
+                    this.device = device;
+                this.popupVisible=true;
+
+                  this.userService.getSpace(this.device.idSpace).subscribe(
+                    data=>{this.space=data;
+                            this.nameS=this.space.name+"\n\nLongitude="+this.space.longitude+"\n\n Latitude="+this.space.latitude;
+
+                      },
+                    err=>{console.log(err.error.message)}
+                  )
+
+                  this.userService.getConstraint(this.device.idConstraint).subscribe(
+                    data=>{this.constraint=data;
+                            this.nameC=this.constraint.nameConstraint;
+                            this.values=   "[ Min Value="+this.constraint.min_value+" °C , Max Value="+this.constraint.max_value+" °C ]";
+
+                      },
+                    err=>{console.log(err.error.message)}
+                  )
+
+                  this.userService.getDeviceRT_LastValue(this.device.reference).subscribe(
+                    data=>{this.realtime=data;
+
+                      if (this.realtime !=undefined)
+
+                   {   console.log("realtime "+this.realtime[0])
+
+                   this.vc2=this.realtime["value_co2"];
+                   this.dc2=this.realtime["date"];}
+                   else {
+
+
+
+                    this.vc2="---------";
+                    this.dc2="----------";
+                   }
+
+
+
+
+
+                      },
+                    err=>{console.log(err.error.message)}
+                  )
+
+
+
+
+                }
 
 }

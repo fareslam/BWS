@@ -36,7 +36,9 @@ export class ConstraintsComponent implements OnInit {
   }
 
 
-
+ngAfterViewInit(): void{
+  this.readData();
+}
 
   listDevices() {
     this.adminService.listdevicesByIDCT().subscribe(

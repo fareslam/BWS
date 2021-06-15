@@ -3,7 +3,7 @@
 
 
 
-<h4 class="display-4" style="text-align: center;">Assign for each customer their areas</h4>
+<h4 class="display-4" style="text-align: center;">Assign for each client their areas</h4>
 <hr>
 
 <br>
@@ -53,7 +53,7 @@ id="button"
     type="danger"
     (onClick)="exportGrid()">
 </dx-button>
-<dx-data-grid id="gridContainer"
+<dx-data-grid id="gridContainer" class="table shadow p-3 mb-5 bg-white rounded"
 [showBorders]="true"
 [dataSource]="listca"
 (onRowRemoved)="removeClientArea($event)"

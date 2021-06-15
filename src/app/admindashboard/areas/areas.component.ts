@@ -89,7 +89,7 @@ createMap(ad:AdminServiceService){
   const zoomlevel = 6;
 this.map = L.map('map', {drawControl: true}).setView([ 33.892166, 9.561555499999997], 5);
 const mainlayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  minZoom: 5,
+  minZoom: 7,
   maxZoom: 17,
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright%22%3EOpenStreetMap</a> contributors'
 });

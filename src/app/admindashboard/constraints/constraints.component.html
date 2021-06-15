@@ -9,7 +9,7 @@
 </dx-button>
 
 <dx-data-grid
-    id="grid"
+    id="grid" class="table shadow p-3 mb-5 bg-white rounded"
     [dataSource]="dataSource"
 
     [rowAlternationEnabled]="true"
@@ -64,51 +64,3 @@
 
 </dx-data-grid>
 
-<div hidden="true">
-
-<br>
-
-<h4 class="display-4" style="text-align: center;">Assign for each device a constraint</h4>
-<hr>
-
-<br>
-
-
-<div class="dx-fieldset">
-  <div class="dx-fieldset-header">Choose the constraint :</div>
-  <div class="dx-field">
-    <dx-lookup
-    [dataSource]="dataSource"
-    displayExpr="nameConstraint"
-    [(value)]="idConstraint"
-
-    valueExpr="idConstraint">
-    <dxo-drop-down-options [showTitle]="false"></dxo-drop-down-options>
-</dx-lookup>
-  </div>
-</div>
-
-<div class="dx-fieldset">
-  <div class="dx-fieldset-header">Choose a device :</div>
-  <div class="dx-field">
-    <dx-lookup
-    [dataSource]="devices"
-    displayExpr="name"
-    [(value)]="reference"
-    valueExpr="reference">
-    <dxo-drop-down-options [showTitle]="false"></dxo-drop-down-options>
-
-</dx-lookup>
-  </div>
-<br>
-  <dx-button
-icon="check"
-type="success"
-text="Assign"
-(onClick)="update()"
-id="button"
->
-</dx-button>
-
-</div>
-</div>
